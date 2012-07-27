@@ -1,0 +1,58 @@
+.wp-erident-dashboard .er-textfield {
+	width:400px;
+	padding:5px;
+}
+.wp-erident-dashboard .er-textfield-small {
+	padding:5px;
+	width:130px;
+}
+.wp-erident-dashboard td {
+	margin-bottom: 9px;
+	padding: 8px 10px;
+	line-height: 20px;
+	font-size: 12px;
+}
+.wp-erident-dashboard th {
+	vertical-align: top;
+	text-align: left;
+	padding: 10px;
+	width: 220px;
+	font-weight:normal;
+}
+.wp-erident-dashboard table {
+	padding-top: 20px;
+}
+#ilctabscolorpicker, #ilctabscolorpicker2, #ilctabscolorpicker3, #ilctabscolorpicker4, #ilctabscolorpicker5, #ilctabscolorpicker6 {
+	margin-left:210px;
+	position:absolute;
+}
+#ilctabscolorpicker {
+	margin-top:-90px;
+}
+#ilctabscolorpicker2 {
+	margin-top:-160px;
+}
+#ilctabscolorpicker3 {
+	margin-top:-50px;
+}
+#ilctabscolorpicker4 {
+	margin-top:-160px;
+}
+#ilctabscolorpicker5 {
+	margin-top:-110px;
+}
+#ilctabscolorpicker6 {
+	margin-top:-110px;
+}
+.er_notice {
+	padding: 10px 20px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: lightYellow;
+	border: 1px solid #E6DB55;
+	margin: 10px 5px 10px 0;
+}
+.wp-erident-dashboard select {
+	height:30px;
+}
