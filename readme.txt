@@ -70,7 +70,7 @@ This section describes how to install the plugin and get it working.
 
 == Frequently Asked Questions ==
 
-= Is it leagel to change WordPress Logo and texts? =
+= Is it legel to change WordPress Logo and texts? =
 
 Yes. WordPress gives you the permission to change whole login screen and dashboard to yours by using WordPress hooks.
 
