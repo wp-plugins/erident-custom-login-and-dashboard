@@ -3,9 +3,9 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completly your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 1.0.0
+Version: 1.1
 Author: Erident Technologies
-Author URI: http://www.eridenttech.com
+Author URI: http://www.eridenttech.com/
 License: GPL
 */
 
@@ -86,13 +86,17 @@ function er_login_logo() {
  $er_top_bg_color = get_option('wp_erident_top_bg_color');
  $er_top_bg_image = get_option('wp_erident_top_bg_image');
  $er_top_bg_repeat = get_option('wp_erident_top_bg_repeat');
+ $er_top_bg_xpos = get_option('wp_erident_top_bg_xpos');
+ $er_top_bg_ypos = get_option('wp_erident_top_bg_ypos');
 
  $er_login_bg_image = get_option('wp_erident_login_bg_image');
  $er_login_bg_repeat = get_option('wp_erident_login_bg_repeat');
+ $er_login_bg_xpos = get_option('wp_erident_login_bg_xpos');
+ $er_login_bg_ypos = get_option('wp_erident_login_bg_ypos');
 ?>
     <style type="text/css">
         body.login {
-			background: <?php echo $er_top_bg_color ?> url(<?php echo $er_top_bg_image ?>) <?php echo $er_top_bg_repeat ?>;
+			background: <?php echo $er_top_bg_color ?> url(<?php echo $er_top_bg_image ?>) <?php echo $er_top_bg_repeat ?> <?php echo $er_top_bg_xpos ?> <?php echo $er_top_bg_ypos ?>;
 		}
 		body.login div#login h1 a {
             background-image: url(<?php echo $er_logo ?>);
@@ -105,7 +109,7 @@ function er_login_logo() {
 		.login form {
 			border-radius:<?php echo $er_login_radius ?>px;
 			border:<?php echo $er_login_border_thick ?>px <?php echo $er_login_border ?> <?php echo $er_login_border_color ?>;
-			background:<?php echo $er_login_bg ?> url(<?php echo $er_login_bg_image ?>) <?php echo $er_login_bg_repeat ?>;
+			background:<?php echo $er_login_bg ?> url(<?php echo $er_login_bg_image ?>) <?php echo $er_login_bg_repeat ?> <?php echo $er_login_bg_xpos ?> <?php echo $er_login_bg_ypos ?>;
 		}
 		body.login div#login form p label {
 			color:<?php echo $er_login_text_color ?>;
@@ -160,8 +164,12 @@ add_option("wp_erident_dashboard_link_shadow", '#ffffff', '', 'yes');
 add_option("wp_erident_top_bg_color", '#f9fad2', '', 'yes');
 add_option("wp_erident_top_bg_image", plugins_url('images/top_bg.jpg', __FILE__), '', 'yes');
 add_option("wp_erident_top_bg_repeat", 'repeat', '', 'yes');
+add_option("wp_erident_top_bg_xpos", 'top', '', 'yes');
+add_option("wp_erident_top_bg_ypos", 'left', '', 'yes');
 add_option("wp_erident_login_bg_image", plugins_url('images/form_bg.jpg', __FILE__), '', 'yes');
 add_option("wp_erident_login_bg_repeat", 'repeat', '', 'yes');
+add_option("wp_erident_login_bg_xpos", 'top', '', 'yes');
+add_option("wp_erident_login_bg_ypos", 'left', '', 'yes');
 
 add_option("wp_erident_dashboard_delete_db", 'No', '', 'yes');
 }
@@ -189,8 +197,12 @@ delete_option('wp_erident_dashboard_link_shadow');
 delete_option('wp_erident_top_bg_color');
 delete_option('wp_erident_top_bg_image');
 delete_option('wp_erident_top_bg_repeat');
+delete_option('wp_erident_top_bg_xpos');
+delete_option('wp_erident_top_bg_ypos');
 delete_option('wp_erident_login_bg_image');
 delete_option('wp_erident_login_bg_repeat');
+delete_option('wp_erident_login_bg_xpos');
+delete_option('wp_erident_login_bg_ypos');
 
 delete_option('wp_erident_dashboard_delete_db');
 	}
@@ -209,8 +221,6 @@ add_options_page('Custom Login and Dashboard', 'Custom Login and Dashboard', 'ad
 }
 }
 
-
-
 function wp_erident_dashboard_html_page() {
 ?>
 
@@ -220,9 +230,12 @@ function wp_erident_dashboard_html_page() {
 <p><i>Plugin Loads default values for all below entries. Please change the values to yours.</i></p>
 <form class="wp-erident-dashboard" method="post" action="options.php">
 <?php wp_nonce_field('update-options'); ?>
-<h3>Dashboard Settings</h3>
-<p><i>(These settings will be reflected when a user/admin logins to the WordPress Dashboard.)</i></p>
 
+<div class="postbox">
+<h3 class="hndle"><span>Dashboard Settings</span>
+<span class="postbox-title-action">(These settings will be reflected when a user/admin logins to the WordPress Dashboard)</span>
+</h3>
+<div class="inside">
 <table border="0">
   <tr valign="top">
     <th scope="row">Enter the text for dashboard left side footer:</th>
@@ -242,11 +255,15 @@ value="<?php echo get_option('wp_erident_dashboard_data_right'); ?>" placeholder
     </td>
   </tr>
 </table>
-<h3>Login Screen Settings</h3>
-<p><i>(These settings will be reflected on the "wp-login.php" page. )</i></p>
-<h4>Screen Background</h4>
+</div><!-- end inside -->
+</div><!-- end postbox -->
+
+<div class="postbox">
+<h3 class="hndle"><span>Login Screen Background</span>
+<span class="postbox-title-action">(The following settings will be reflected on the "wp-login.php" page)</span>
+</h3>
+<div class="inside">
 <table border="0">
-  
   <tr valign="top">
     <th scope="row">Login Screen Background Color:</th>
     <td>
@@ -307,14 +324,32 @@ value="<?php echo get_option('wp_erident_top_bg_image'); ?>" />
     <span class="description">Select an image repeat option from dropdown.</span>
     </td>
   </tr>
+  <tr valign="top">
+    <th scope="row">Background Position:</th>
+    <td>Horizontal Position: <input class="er-textfield-small" name="wp_erident_top_bg_xpos" type="text" id="wp_erident_top_bg_xpos"
+value="<?php echo get_option('wp_erident_top_bg_xpos'); ?>" />
+	Vertical Position: <input class="er-textfield-small" name="wp_erident_top_bg_ypos" type="text" id="wp_erident_top_bg_ypos"
+value="<?php echo get_option('wp_erident_top_bg_ypos'); ?>" />
+    <br />
+    <span class="description">The background-position property sets the starting position of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. This will not show any changes if you set the Background Repeat option as "Repeat". <a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank">More Info</a></span>
+    </td>
+  </tr>
+  
 </table>
+</div><!-- end inside -->
+</div><!-- end postbox -->
 
-<h4>Screen Logo</h4>  
+
+<div class="postbox">
+<h3 class="hndle"><span>Login Screen Logo</span>
+<span class="postbox-title-action">(Change the default WordPress logo and powered by text)</span>
+</h3> 
+<div class="inside">
 <table>  
   <tr valign="top">
     <th scope="row">Logo Url:</th>
     <td><input class="er-textfield" name="wp_erident_dashboard_image_logo" type="text" id="wp_erident_dashboard_image_logo"
-value="<?php echo get_option('wp_erident_dashboard_image_logo'); ?>" />
+value="<?php echo get_option('wp_erident_dashboard_image_logo'); ?>" /> <span class="description">Default Logo Size 274px × 63px</span>
     <br />
     <span class="description">(URL path to image to replace default WordPress Logo. (You can upload your image with the media uploader)</span>
     </td>
@@ -328,8 +363,15 @@ value="<?php echo get_option('wp_erident_dashboard_power_text'); ?>" />
     </td>
   </tr>
 </table>
+</div><!-- end inside -->
+</div><!-- end postbox -->
 
-<h4>Login Form Settings</h4>
+
+<div class="postbox">
+<h3 class="hndle"><span>Login Form Settings</span>
+<span class="postbox-title-action">(The following settings will change the Login Form style)</span>
+</h3>
+<div class="inside">
 <table>
   <tr valign="top">
     <th scope="row">Login form width:</th>
@@ -473,6 +515,17 @@ value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
   </tr>
   
   <tr valign="top">
+    <th scope="row">Background Position:</th>
+    <td>Horizontal Position: <input class="er-textfield-small" name="wp_erident_login_bg_xpos" type="text" id="wp_erident_login_bg_xpos"
+value="<?php echo get_option('wp_erident_login_bg_xpos'); ?>" />
+	Vertical Position: <input class="er-textfield-small" name="wp_erident_login_bg_ypos" type="text" id="wp_erident_login_bg_ypos"
+value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
+    <br />
+    <span class="description">The background-position property sets the starting position of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. This will not show any changes if you set the Background Repeat option as "Repeat". <a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank">More Info</a></span>
+    </td>
+  </tr>
+  
+  <tr valign="top">
     <th scope="row">Login Form Text Color</th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_text_color" name="wp_erident_dashboard_text_color" value="<?php echo get_option('wp_erident_dashboard_text_color'); ?>" />
@@ -520,7 +573,14 @@ value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
   </tr>
   
 </table>
-<h3>Plugin Un-install Settings</h3>
+</div><!-- end inside -->
+</div><!-- end postbox -->
+
+
+<div class="postbox">
+<h3 class="hndle"><span>Plugin Un-install Settings</span>
+</h3>
+<div class="inside">
 <table border="0">
   <tr valign="top">
     <th scope="row">Delete custom settings upon plugin deactivation?</th>
@@ -541,8 +601,12 @@ value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
     </td>
   </tr>
 </table>
+</div><!-- end inside -->
+</div><!-- end postbox -->
+
+
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow" />
+<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_xpos" />
 
 <p>
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -550,6 +614,15 @@ value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
 
 </form>
 
+<div class="er_notice2">
+<h3>Quick Links</h3>
+<ul>
+    <li class="login-page"><a href="<?php bloginfo( 'wpurl' ); ?>/wp-login.php" target="_blank">Open Your WP Login Page in a New Tab</a></li>
+    <li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank">Plugin Documentation</a></li>
+    <li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank">Plugin Support Page</a></li>
+    <li><a href="http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard" target="_blank">Plugin Website</a></li>
+</ul>
+</div>
 	<div class="er_notice">
 		<h3>Wants to customize your WordPress theme?</h3>
 		<p>If you wants professional customization to your wordpress themes, Contact <a href="http://www.eridenttech.com" target="_blank">Erident Technologies</a></p>

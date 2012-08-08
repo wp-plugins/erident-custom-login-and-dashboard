@@ -1,14 +1,14 @@
 === Erident Custom Login and Dashboard ===
 Contributors: libinvbabu
 Donate link: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
-Tags: login, customisation, admin, dashboard, customise, erident
+Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, branding
 Requires at least: 3.0.0
 Tested up to: 3.4.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Customize completly your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles ,Dashboard footer etc.
+Customize completly your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, Dashboard footer etc.
 
 == Description ==
 
@@ -38,16 +38,18 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 
 **Login Screen Settings**
 
-(These settings will be reflected on the “wp-login.php” page. )
+(These settings will be reflected on the "wp-login.php" page. )
 
 * Login Screen Background Color/Image
 * Login Screen Background Repeat
+* Login Screen Background Position
 * Logo Url
 * Powered by Text
 * Login form width
 * Login Form Border Style/Radius/Color/Thickness
 * Login Form Background Color/Image
 * Login Form Background Repeat
+* Login Form Background Position
 * Login Form Text Color
 * Enable Link Shadow
 * Login Form Link Shadow Color
@@ -56,7 +58,9 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 
 * Delete custom settings upon plugin deactivation or not
 
-Here's the link to [Plugin Website](http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard)
+Here's the link to [Plugin Website](http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard).
+
+Enjoy your completely branded WordPress Version. Don't forget to rate the plugin :)
 
 == Installation ==
 
@@ -84,14 +88,21 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 == Screenshots ==
 
 1. The complete options on the settings page.
-2. This is the Login Page Demo
+2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 1.1 =
+* Added "background-position" option for the screen & login form background images.
+* Added a link on Settings tab for directly open the login.php page on a new tab.
+* Improved the css layout of Settings page
+* Added a "Quick Links" section at the bottom of settings page.
+* Improved the tutorial texts on settings page.
 
 = 1.0 =
 * First version.
 
 == Upgrade Notice ==
 
-= 1.0 =
-No need to upgrade. Just install it. This is the first version.
+= 1.1 =
+This version added a new settings for background position of images and other handy features. Upgrade now.
