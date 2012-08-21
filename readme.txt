@@ -4,7 +4,7 @@ Donate link: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dash
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, branding
 Requires at least: 3.0.0
 Tested up to: 3.4.1
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,7 +74,7 @@ This section describes how to install the plugin and get it working.
 
 == Frequently Asked Questions ==
 
-= Is it legel to change WordPress Logo and texts? =
+= Is it legal to change WordPress Logo and texts? =
 
 Yes. WordPress gives you the permission to change whole login screen and dashboard to yours by using WordPress hooks.
 
@@ -92,6 +92,9 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 
 == Changelog ==
 
+= 1.2 =
+* Fixed the issue of conflicting with other plugins on admin pages.
+
 = 1.1 =
 * Added "background-position" option for the screen & login form background images.
 * Added a link on Settings tab for directly open the login.php page on a new tab.
@@ -104,5 +107,5 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 
 == Upgrade Notice ==
 
-= 1.1 =
-This version added a new settings for background position of images and other handy features. Upgrade now.
+= 1.2 =
+This version fixed the issue of conflicting with other plugins on admin pages. Upgrade now.

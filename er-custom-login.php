@@ -3,7 +3,7 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completly your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 1.1
+Version: 1.2
 Author: Erident Technologies
 Author URI: http://www.eridenttech.com/
 License: GPL
@@ -29,8 +29,6 @@ License: GPL
 function my_admin_head() {
         echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('er-admin.css', __FILE__). '">';
 		echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('farbtastic/farbtastic.css', __FILE__). '">';
-		echo '<script type="text/javascript" src="' .plugins_url('farbtastic/jquery.js', __FILE__). '"></script>';
-		echo '<script type="text/javascript" src="' .plugins_url('farbtastic/farbtastic.js', __FILE__). '"></script>';
 }
 
 add_action('admin_head', 'my_admin_head');
@@ -212,15 +210,35 @@ delete_option('wp_erident_dashboard_delete_db');
 
 if ( is_admin() ){
 
-/* Call the html code */
-add_action('admin_menu', 'wp_erident_dashboard_admin_menu');
 
-function wp_erident_dashboard_admin_menu() {
-add_options_page('Custom Login and Dashboard', 'Custom Login and Dashboard', 'administrator',
+ add_action( 'admin_init', 'wp_erident_dashboard_admin_init' );
+    add_action( 'admin_menu', 'wp_erident_dashboard_admin_menu' );
+
+    function wp_erident_dashboard_admin_init() {
+        /* Register our script. */
+        wp_register_script('wp_erident_dashboard-script', plugins_url('/farbtastic/farbtastic.js', __FILE__));
+		wp_register_script('wp_erident_dashboard-script2', plugins_url('/farbtastic/jquery.js', __FILE__));
+    }
+
+    function wp_erident_dashboard_admin_menu() {
+        /* Register our plugin page */
+        $page = add_options_page('Custom Login and Dashboard', 'Custom Login and Dashboard', 'administrator',
 'erident-custom-login-and-dashboard', 'wp_erident_dashboard_html_page');
-}
-}
 
+        /* Using registered $page handle to hook script load */
+        add_action('admin_print_styles-' . $page, 'wp_erident_dashboard_admin_styles');
+    }
+
+    function wp_erident_dashboard_admin_styles() {
+        /*
+         * It will be called only on your plugin admin page, enqueue our script here
+         */
+        wp_enqueue_script( 'wp_erident_dashboard-script2' );
+		wp_enqueue_script( 'wp_erident_dashboard-script' );
+    } 
+/* Call the html code */
+   
+}
 function wp_erident_dashboard_html_page() {
 ?>
 
