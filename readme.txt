@@ -3,8 +3,8 @@ Contributors: libinvbabu
 Donate link: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, branding
 Requires at least: 3.0.0
-Tested up to: 3.4.1
-Stable tag: 1.2
+Tested up to: 3.4.2
+Stable tag: 1.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 1. Change Texts/Links Color on Login Form
 1. Replace the WordPress Logo on the Login Form with your own.
 1. Enable/Disable shadow for the Links on Login Form
+1. Enable/Disable shadow for the Login Form
 1. Preserve previous settings upon WordPress/plugins update!
 
 **Erident Custom Login and Dashboard Settings:**
@@ -53,6 +54,8 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 * Login Form Text Color
 * Enable Link Shadow
 * Login Form Link Shadow Color
+* Enable form Shadow
+* Login Form Shadow Color
 
 **Plugin Un-install Settings**
 
@@ -91,6 +94,10 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 1.3 =
+* Added an option for Form Shadow.
+* Fixed Minor bugs.
 
 = 1.2 =
 * Fixed the issue of conflicting with other plugins on admin pages.

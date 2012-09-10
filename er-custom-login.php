@@ -3,7 +3,7 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completly your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 1.2
+Version: 1.3
 Author: Erident Technologies
 Author URI: http://www.eridenttech.com/
 License: GPL
@@ -73,12 +73,20 @@ function er_login_logo() {
  $er_login_text_color = get_option('wp_erident_dashboard_text_color');
  $er_login_link_color = get_option('wp_erident_dashboard_link_color');
  
+ 
  $check_shadow = get_option('wp_erident_dashboard_check_shadow');
 	if($check_shadow == Yes) { 
  		$er_login_link_shadow = get_option('wp_erident_dashboard_link_shadow').' 0 1px 0';
 	}
 	else {
 		$er_login_link_shadow = "none";
+	}
+  $check_fshadow = get_option('wp_erident_dashboard_check_form_shadow');
+	if($check_fshadow == Yes) { 
+ 		$er_login_form_shadow = '0 4px 10px -1px '.get_option('wp_erident_dashboard_form_shadow');
+	}
+	else {
+		$er_login_form_shadow = "none";
 	}
  
  $er_top_bg_color = get_option('wp_erident_top_bg_color');
@@ -108,6 +116,9 @@ function er_login_logo() {
 			border-radius:<?php echo $er_login_radius ?>px;
 			border:<?php echo $er_login_border_thick ?>px <?php echo $er_login_border ?> <?php echo $er_login_border_color ?>;
 			background:<?php echo $er_login_bg ?> url(<?php echo $er_login_bg_image ?>) <?php echo $er_login_bg_repeat ?> <?php echo $er_login_bg_xpos ?> <?php echo $er_login_bg_ypos ?>;
+			-moz-box-shadow:    <?php echo $er_login_form_shadow ?>;
+			-webkit-box-shadow: <?php echo $er_login_form_shadow ?>;
+			box-shadow:         <?php echo $er_login_form_shadow ?>;
 		}
 		body.login div#login form p label {
 			color:<?php echo $er_login_text_color ?>;
@@ -158,6 +169,8 @@ add_option("wp_erident_dashboard_text_color", '#000000', '', 'yes');
 add_option("wp_erident_dashboard_link_color", '#21759B', '', 'yes');
 add_option("wp_erident_dashboard_check_shadow", 'Yes', '', 'yes');
 add_option("wp_erident_dashboard_link_shadow", '#ffffff', '', 'yes');
+add_option("wp_erident_dashboard_check_form_shadow", 'Yes', '', 'yes');
+add_option("wp_erident_dashboard_form_shadow", '#C8C8C8', '', 'yes');
 
 add_option("wp_erident_top_bg_color", '#f9fad2', '', 'yes');
 add_option("wp_erident_top_bg_image", plugins_url('images/top_bg.jpg', __FILE__), '', 'yes');
@@ -191,6 +204,8 @@ delete_option('wp_erident_dashboard_text_color');
 delete_option('wp_erident_dashboard_link_color');
 delete_option('wp_erident_dashboard_check_shadow');
 delete_option('wp_erident_dashboard_link_shadow');
+delete_option('wp_erident_dashboard_check_form_shadow');
+delete_option('wp_erident_dashboard_form_shadow');
 
 delete_option('wp_erident_top_bg_color');
 delete_option('wp_erident_top_bg_image');
@@ -259,7 +274,7 @@ function wp_erident_dashboard_html_page() {
     <th scope="row">Enter the text for dashboard left side footer:</th>
     <td>
     <input class="er-textfield" name="wp_erident_dashboard_data_left" type="text" id="wp_erident_dashboard_data_left"
-value="<?php echo get_option('wp_erident_dashboard_data_left'); ?>" placeholder="Text for dashboard left side footer" />
+value="<?php echo esc_html( get_option('wp_erident_dashboard_data_left') ); ?>" placeholder="Text for dashboard left side footer" />
 	<br />
     <span class="description">This will replace the default "Thank you for creating with WordPress" on the bottom left side of dashboard</span>
 	</td>
@@ -267,7 +282,7 @@ value="<?php echo get_option('wp_erident_dashboard_data_left'); ?>" placeholder=
   <tr valign="top">
     <th scope="row">Enter the text for dashboard right side footer:</th>
     <td><input class="er-textfield" name="wp_erident_dashboard_data_right" type="text" id="wp_erident_dashboard_data_right"
-value="<?php echo get_option('wp_erident_dashboard_data_right'); ?>" placeholder="Text for dashboard left right footer"  />
+value="<?php echo esc_html( get_option('wp_erident_dashboard_data_right') ); ?>" placeholder="Text for dashboard left right footer"  />
     <br />
     <span class="description">This will replace the default "WordPress Version" on the bottom right side of dashboard</span>
     </td>
@@ -328,6 +343,7 @@ value="<?php echo get_option('wp_erident_top_bg_image'); ?>" />
 				break;
 				
 				default:
+				$er_screen_a=$er_screen_b=$er_screen_c=$er_screen_d="";
 				break;
 				}
      ?>       
@@ -440,6 +456,7 @@ value="<?php echo get_option('wp_erident_dashboard_login_radius'); ?>" />px
 				break;
 				
 				default:
+				$er_a=$er_b=$er_c=$er_d=$er_e="";
 				break;
 				}
      ?>       
@@ -517,6 +534,7 @@ value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
 				break;
 				
 				default:
+				$er_login_a=$er_login_b=$er_login_c=$er_login_d="";
 				break;
 				}
      ?>       
@@ -567,7 +585,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     <td>
     <?php 
 	$check_sh = get_option('wp_erident_dashboard_check_shadow');
-	if($check_sh == Yes) { $sx = "checked"; } else { $sy = "checked"; } ?>
+	if($check_sh == 'Yes') { $sx = "checked"; $sy = ''; } else { $sy = "checked"; $sx = ''; } ?>
 
       <label>
         <input type="radio" name="wp_erident_dashboard_check_shadow" value="Yes" id="wp_erident_dashboard_check_shadow_0" <?php echo $sx; ?>  onclick="$('#hide-this').show('normal')" />
@@ -590,6 +608,36 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     </td>
   </tr>
   
+  <!-- Form Shadow -->
+  <tr valign="top">
+    <th scope="row">Enable form shadow?</th>
+    <td>
+    <?php 
+	$check_fsh = get_option('wp_erident_dashboard_check_form_shadow');
+	if($check_fsh == 'Yes') { $fsx = "checked"; $fsy = ''; } else { $fsy = "checked"; $fsx = ''; } ?>
+
+      <label>
+        <input type="radio" name="wp_erident_dashboard_check_form_shadow" value="Yes" id="wp_erident_dashboard_check_form_shadow_0" <?php echo $fsx; ?>  onclick="$('#hide-this2').show('normal')" />
+        Yes</label>
+
+      <label>
+        <input type="radio" name="wp_erident_dashboard_check_form_shadow" value="No" id="wp_erident_dashboard_check_form_shadow_1" <?php echo $fsy; ?> onclick="$('#hide-this2').hide('normal')" />
+        No</label>
+    <br />
+    <span class="description">(Check an option)</span>
+    </td>
+  </tr>
+  <tr valign="top" id="hide-this2">
+    <th scope="row">Login Form Shadow Color</th>
+    <td>
+    <input class="er-textfield-small" type="text" id="wp_erident_dashboard_form_shadow" name="wp_erident_dashboard_form_shadow" value="<?php echo get_option('wp_erident_dashboard_form_shadow'); ?>" />
+    <div id="ilctabscolorpicker7"></div>
+    <br />
+    <span class="description">Click the box to select a color.</span>
+    </td>
+  </tr>
+  <!-- end Form shadow -->
+  
 </table>
 </div><!-- end inside -->
 </div><!-- end postbox -->
@@ -605,7 +653,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     <td>
     <?php 
 	$check = get_option('wp_erident_dashboard_delete_db');
-	if($check == Yes) { $x = "checked"; } else { $y = "checked"; } ?>
+	if($check == 'Yes') { $x = "checked"; $y = ''; } else { $y = "checked"; $x = ''; } ?>
 
       <label>
         <input type="radio" name="wp_erident_dashboard_delete_db" value="Yes" id="wp_erident_dashboard_delete_db_0" <?php echo $x; ?> />
@@ -624,7 +672,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_xpos" />
+<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_xpos" />
 
 <p>
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -684,6 +732,11 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 	jQuery('#ilctabscolorpicker6').farbtastic("#wp_erident_dashboard_link_shadow");
     jQuery("#wp_erident_dashboard_link_shadow").click(function(){jQuery('#ilctabscolorpicker6').slideDown()});
 	jQuery("#wp_erident_dashboard_link_shadow").blur(function(){jQuery('#ilctabscolorpicker6').slideUp()});
+	
+	jQuery('#ilctabscolorpicker7').hide();
+	jQuery('#ilctabscolorpicker7').farbtastic("#wp_erident_dashboard_form_shadow");
+    jQuery("#wp_erident_dashboard_form_shadow").click(function(){jQuery('#ilctabscolorpicker7').slideDown()});
+	jQuery("#wp_erident_dashboard_form_shadow").blur(function(){jQuery('#ilctabscolorpicker7').slideUp()});
   });
  
 </script>
