@@ -2,10 +2,10 @@
 /*
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
-Description: Customize completly your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 1.3
-Author: Erident Technologies
-Author URI: http://www.eridenttech.com/
+Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
+Version: 1.4
+Author: Libin V Babu
+Author URI: http://www.libin.in/
 License: GPL
 */
 
@@ -36,17 +36,17 @@ add_action('admin_head', 'my_admin_head');
 /**
  * Add Settings link to plugins
  */
- function add_settings_link($links, $file) {
+function er_add_settings_link($links, $file) {
 static $this_plugin;
 if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
- 
+
 if ($file == $this_plugin){
 $settings_link = '<a href="options-general.php?page=erident-custom-login-and-dashboard">'.__("Settings", "erident-custom-login-and-dashboard").'</a>';
  array_unshift($links, $settings_link);
 }
 return $links;
  }
-add_filter('plugin_action_links', 'add_settings_link', 10, 2 );
+add_filter('plugin_action_links', 'er_add_settings_link', 10, 2 );
 
 
 add_filter('admin_footer_text', 'left_admin_footer_text_output'); //left side
@@ -71,6 +71,9 @@ function er_login_logo() {
  $er_login_border_color = get_option('wp_erident_dashboard_border_color');
  $er_login_bg = get_option('wp_erident_dashboard_login_bg');
  $er_login_text_color = get_option('wp_erident_dashboard_text_color');
+ $er_login_input_text_color = get_option('wp_erident_dashboard_input_text_color');
+ $er_login_label_text_size = get_option('wp_erident_dashboard_label_text_size');
+ $er_login_input_text_size = get_option('wp_erident_dashboard_input_text_size');
  $er_login_link_color = get_option('wp_erident_dashboard_link_color');
  
  
@@ -122,6 +125,11 @@ function er_login_logo() {
 		}
 		body.login div#login form p label {
 			color:<?php echo $er_login_text_color ?>;
+			font-size:<?php echo $er_login_label_text_size ?>px;
+		}
+		body.login div#login form .input, .login input[type="text"] {
+				color: <?php echo $er_login_input_text_color ?>;
+				font-size:<?php echo $er_login_input_text_size ?>px;
 		}
 		body.login #nav a, body.login #backtoblog a {
 			color: <?php echo $er_login_link_color ?> !important;
@@ -166,6 +174,10 @@ add_option("wp_erident_dashboard_border_thick", '4', '', 'yes');
 add_option("wp_erident_dashboard_border_color", '#6e838e', '', 'yes');
 add_option("wp_erident_dashboard_login_bg", '#dbdbdb', '', 'yes');
 add_option("wp_erident_dashboard_text_color", '#000000', '', 'yes');
+add_option("wp_erident_dashboard_input_text_color", '#555555', '', 'yes');
+add_option("wp_erident_dashboard_label_text_size", '14', '', 'yes');
+add_option("wp_erident_dashboard_input_text_size", '24', '', 'yes');
+
 add_option("wp_erident_dashboard_link_color", '#21759B', '', 'yes');
 add_option("wp_erident_dashboard_check_shadow", 'Yes', '', 'yes');
 add_option("wp_erident_dashboard_link_shadow", '#ffffff', '', 'yes');
@@ -201,6 +213,9 @@ delete_option('wp_erident_dashboard_border_thick');
 delete_option('wp_erident_dashboard_border_color');
 delete_option('wp_erident_dashboard_login_bg');
 delete_option('wp_erident_dashboard_text_color');
+delete_option('wp_erident_dashboard_input_text_color');
+delete_option('wp_erident_dashboard_label_text_size');
+delete_option('wp_erident_dashboard_input_text_size');
 delete_option('wp_erident_dashboard_link_color');
 delete_option('wp_erident_dashboard_check_shadow');
 delete_option('wp_erident_dashboard_link_shadow');
@@ -500,8 +515,7 @@ value="<?php echo get_option('wp_erident_dashboard_border_thick'); ?>" />px
   </tr>
   <tr valign="top">
     <th scope="row">Login Form Background Image:</th>
-    <td><input class="er-textfield" name="wp_erident_login_bg_image" type="text" id="wp_erident_login_bg_image"
-value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
+    <td><input class="er-textfield" name="wp_erident_login_bg_image" type="text" id="wp_erident_login_bg_image" value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
     <br />
     <span class="description">Add your own pattern/image url to the form background. Leave blank if you don't need any images.</span>
     </td>
@@ -562,12 +576,35 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
   </tr>
   
   <tr valign="top">
-    <th scope="row">Login Form Text Color</th>
+    <th scope="row">Login Form Label Text Color</th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_text_color" name="wp_erident_dashboard_text_color" value="<?php echo get_option('wp_erident_dashboard_text_color'); ?>" />
     <div id="ilctabscolorpicker3"></div>
     <br />
-    <span class="description">Click the box to select a color.</span>
+    <span class="description">Click the box to select a color. This will change the color of label Username/Password</span>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row">Login Form Label Text Size:</th>
+    <td><input class="er-textfield-small" name="wp_erident_dashboard_label_text_size" type="text" id="wp_erident_dashboard_label_text_size" value="<?php echo get_option('wp_erident_dashboard_label_text_size'); ?>" />px
+    <br />
+    <span class="description">Font Size of Label Username /Password(Enter value in pixels)</span>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row">Login Form Input Text Color</th>
+    <td>
+    <input class="er-textfield-small" type="text" id="wp_erident_dashboard_input_text_color" name="wp_erident_dashboard_input_text_color" value="<?php echo get_option('wp_erident_dashboard_input_text_color'); ?>" />
+    <div id="ilctabscolorpicker8"></div>
+    <br />
+    <span class="description">Click the box to select a color. This will change the color of text inside text box.</span>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row">Login Form Input Text Size:</th>
+    <td><input class="er-textfield-small" name="wp_erident_dashboard_input_text_size" type="text" id="wp_erident_dashboard_input_text_size" value="<?php echo get_option('wp_erident_dashboard_input_text_size'); ?>" />px
+    <br />
+    <span class="description">Font Size of text inside text box(Enter value in pixels)</span>
     </td>
   </tr>
   <tr valign="top">
@@ -672,7 +709,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_xpos" />
+<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_ypos,wp_erident_dashboard_input_text_color,wp_erident_dashboard_label_text_size,wp_erident_dashboard_input_text_size" />
 
 <p>
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -688,16 +725,11 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     <li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank">Plugin Support Page</a></li>
     <li><a href="http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard" target="_blank">Plugin Website</a></li>
 </ul>
-</div>
+</div><!-- end .er_notice2 -->
 	<div class="er_notice">
 		<h3>Wants to customize your WordPress theme?</h3>
-		<p>If you wants professional customization to your wordpress themes, Contact <a href="http://www.eridenttech.com" target="_blank">Erident Technologies</a></p>
-		<ul>
-			<li><a href="http://www.eridenttech.com/portfolio" target="_blank">Our WebDesign Portfolio</a></li>
-			<li><a href="http://www.facebook.com/EridentTechnologies" target="_blank">Follow Us on Facebook</a></li>
-            <li><a href="http://twitter.com/eridenttech" target="_blank">Find Us on Twitter</a></li>
-		</ul>
-	</div>
+		<p>If you wants professional customization to your wordpress themes, Contact <a href="http://www.libin.in" target="_blank">www.libin.in</a></p>
+	</div><!-- end .er_notice -->
     
 </div>
 <script type="text/javascript">
@@ -737,6 +769,11 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 	jQuery('#ilctabscolorpicker7').farbtastic("#wp_erident_dashboard_form_shadow");
     jQuery("#wp_erident_dashboard_form_shadow").click(function(){jQuery('#ilctabscolorpicker7').slideDown()});
 	jQuery("#wp_erident_dashboard_form_shadow").blur(function(){jQuery('#ilctabscolorpicker7').slideUp()});
+	
+	jQuery('#ilctabscolorpicker8').hide();
+	jQuery('#ilctabscolorpicker8').farbtastic("#wp_erident_dashboard_input_text_color");
+    jQuery("#wp_erident_dashboard_input_text_color").click(function(){jQuery('#ilctabscolorpicker8').slideDown()});
+	jQuery("#wp_erident_dashboard_input_text_color").blur(function(){jQuery('#ilctabscolorpicker8').slideUp()});
   });
  
 </script>

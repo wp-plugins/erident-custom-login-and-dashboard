@@ -3,12 +3,12 @@ Contributors: libinvbabu
 Donate link: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, branding
 Requires at least: 3.0.0
-Tested up to: 3.4.2
-Stable tag: 1.3
+Tested up to: 3.5
+Stable tag: 1.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Customize completly your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, Dashboard footer etc.
+Customize completely your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, Dashboard footer etc.
 
 == Description ==
 
@@ -20,7 +20,7 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 1. Add Image/Color Backgrounds to Login Screen.
 1. Add Image/Color Background to Login Form.
 1. Pick color using awesome jQuery color picker
-1. Change Texts/Links Color on Login Form
+1. Change Texts/Links Color and size on Login Form
 1. Replace the WordPress Logo on the Login Form with your own.
 1. Enable/Disable shadow for the Links on Login Form
 1. Enable/Disable shadow for the Login Form
@@ -51,7 +51,8 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 * Login Form Background Color/Image
 * Login Form Background Repeat
 * Login Form Background Position
-* Login Form Text Color
+* Login Form Label/input Text Color
+* Login Form Label/input Text Size
 * Enable Link Shadow
 * Login Form Link Shadow Color
 * Enable form Shadow
@@ -95,6 +96,11 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 
 == Changelog ==
 
+= 1.4 =
+* Added an option for Login Form label and input text's font size
+* Added an option for Login Form input text color
+* Bug fixed for settings link conflicting
+
 = 1.3 =
 * Added an option for Form Shadow.
 * Fixed Minor bugs.
@@ -114,5 +120,5 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 
 == Upgrade Notice ==
 
-= 1.2 =
-This version fixed the issue of conflicting with other plugins on admin pages. Upgrade now.
+= 1.4 =
+This version fixed a small bug and added new features. Upgrade now.
