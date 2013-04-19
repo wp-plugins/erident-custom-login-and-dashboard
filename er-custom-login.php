@@ -3,13 +3,13 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 1.4
+Version: 1.5.1
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
 */
 
-/*  Copyright 2012  Erident Technologies  (email : support@eridenttech.com)
+/*  Copyright 2013  Libin V Babu  (email : libin@libin.in)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -162,10 +162,10 @@ register_deactivation_hook( __FILE__, 'wp_erident_dashboard_remove' );
 
 function wp_erident_dashboard_install() {
 /* Creates new database field */
-add_option("wp_erident_dashboard_data_left", 'Powered by Erident Technologies', '', 'yes');
-add_option("wp_erident_dashboard_data_right", '&copy; 2012 All Rights Reserved', '', 'yes');
+add_option("wp_erident_dashboard_data_left", 'Powered by www.libin.in', '', 'yes');
+add_option("wp_erident_dashboard_data_right", '&copy; 2013 All Rights Reserved', '', 'yes');
 add_option("wp_erident_dashboard_image_logo", plugins_url('images/default-logo.png', __FILE__), '', 'yes');
-add_option("wp_erident_dashboard_power_text", 'Powered by Erident Technologies', '', 'yes');
+add_option("wp_erident_dashboard_power_text", 'Powered by www.libin.in', '', 'yes');
 
 add_option("wp_erident_dashboard_login_width", '350', '', 'yes');
 add_option("wp_erident_dashboard_login_radius", '10', '', 'yes');
@@ -400,7 +400,7 @@ value="<?php echo get_option('wp_erident_top_bg_ypos'); ?>" />
     <td><input class="er-textfield" name="wp_erident_dashboard_image_logo" type="text" id="wp_erident_dashboard_image_logo"
 value="<?php echo get_option('wp_erident_dashboard_image_logo'); ?>" /> <span class="description">Default Logo Size 274px × 63px</span>
     <br />
-    <span class="description">(URL path to image to replace default WordPress Logo. (You can upload your image with the media uploader)</span>
+    <span class="description">(URL path to image to replace default WordPress Logo. (You can upload your image with the WordPress media uploader)</span>
     </td>
   </tr>
   <tr valign="top">

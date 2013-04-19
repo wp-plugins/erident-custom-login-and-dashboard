@@ -1,18 +1,23 @@
 === Erident Custom Login and Dashboard ===
 Contributors: libinvbabu
-Donate link: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
+Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, branding
 Requires at least: 3.0.0
-Tested up to: 3.5
-Stable tag: 1.4
+Tested up to: 3.5.1
+Stable tag: 1.5.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Customize completely your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, Dashboard footer etc.
+Customize completely your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, 
+
+Dashboard footer etc.
 
 == Description ==
 
-Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
+TOP RATED PLUGIN for Login Page Customization. Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
+
+Fastest support for the plugin. If you have any queries, 
+visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
 
 **Features:**
 
@@ -70,7 +75,8 @@ Enjoy your completely branded WordPress Version. Don't forget to rate the plugin
 
 This section describes how to install the plugin and get it working.
 
-1. Upload  the entire contents of the zip file to your plugin directory '/wp-content/plugins/'
+1. Goto WordPress Dashboard -> Add new plugin and search "erident"
+1. Click Install button on "Erident Custom Login and Dashboard"
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Go to the plugins options page in the WordPress admin ('Settings' -> 'Custom Login and Dashboard')
 1. Change the footer texts, images, colors, styles as you desire
@@ -84,10 +90,17 @@ Yes. WordPress gives you the permission to change whole login screen and dashboa
 
 = How can I add my own image to use as Login screen's background? =
 
-Simply upload your image using WordPress uploader and copy the image link from there and paste it in the Custom Login and Dashboard Settings page.
+Simply upload your image using WordPress uploader and copy the image link from there and paste it in the Custom Login and Dashboard 
+
+Settings page.
 
 = On next update will I lose my previous settings? =
 By default you will not lose any of your previous settings. Check the Plugin Un-install Settings.
+
+= I want some custom changes. How can I do that? =
+You can edit the plugin's php file through WordPress plugin editor. But once you made an update the changes you made will disappear. So 
+
+make sure to backup your changes before updating.
 
 == Screenshots ==
 
@@ -95,6 +108,10 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 1.5.1 =
+* Fixed a small bug
+* Help texts improved and added new FAQ question
 
 = 1.4 =
 * Added an option for Login Form label and input text's font size
@@ -120,5 +137,5 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 
 == Upgrade Notice ==
 
-= 1.4 =
-This version fixed a small bug and added new features. Upgrade now.
+= 1.5.1 =
+This version fixed a small bug and updated some texts. Upgrade now.
