@@ -3,7 +3,7 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 1.5.1
+Version: 2.0.0
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -63,6 +63,8 @@ function right_admin_footer_text_output($er_right) {
 /* Login Logo */
 function er_login_logo() { 
  $er_logo = get_option('wp_erident_dashboard_image_logo');
+ $er_logo_width = get_option('wp_erident_dashboard_image_logo_width');
+ $er_logo_height = get_option('wp_erident_dashboard_image_logo_height');
  
  $er_login_width = get_option('wp_erident_dashboard_login_width');
  $er_login_radius = get_option('wp_erident_dashboard_login_radius');
@@ -111,6 +113,9 @@ function er_login_logo() {
             background-image: url(<?php echo $er_logo ?>);
             padding-bottom: 30px;
 			margin: 0 auto;
+			background-size: <?php echo $er_logo_width ?>px <?php echo $er_logo_height ?>px;
+			width: <?php echo $er_logo_width ?>px;
+			height: <?php echo $er_logo_height ?>px;
         }
 		body.login #login {
 		width:<?php echo $er_login_width ?>px;
@@ -165,6 +170,8 @@ function wp_erident_dashboard_install() {
 add_option("wp_erident_dashboard_data_left", 'Powered by www.libin.in', '', 'yes');
 add_option("wp_erident_dashboard_data_right", '&copy; 2013 All Rights Reserved', '', 'yes');
 add_option("wp_erident_dashboard_image_logo", plugins_url('images/default-logo.png', __FILE__), '', 'yes');
+add_option("wp_erident_dashboard_image_logo_width", '274', '', 'yes');
+add_option("wp_erident_dashboard_image_logo_height", '63', '', 'yes');
 add_option("wp_erident_dashboard_power_text", 'Powered by www.libin.in', '', 'yes');
 
 add_option("wp_erident_dashboard_login_width", '350', '', 'yes');
@@ -204,6 +211,8 @@ function wp_erident_dashboard_remove() {
 delete_option('wp_erident_dashboard_data_left');
 delete_option('wp_erident_dashboard_data_right');
 delete_option('wp_erident_dashboard_image_logo');
+delete_option('wp_erident_dashboard_image_logo_width');
+delete_option('wp_erident_dashboard_image_logo_height');
 delete_option('wp_erident_dashboard_power_text');
 
 delete_option('wp_erident_dashboard_login_width');
@@ -273,14 +282,15 @@ function wp_erident_dashboard_html_page() {
 ?>
 
 <div class="wrap">
-<div id="icon-options-general" class="icon32"><br></div>
-<h2>Erident Custom Login and Dashboard Settings</h2>
-<p><i>Plugin Loads default values for all below entries. Please change the values to yours.</i></p>
-<form class="wp-erident-dashboard" method="post" action="options.php">
+	<div id="icon-options-general" class="icon32"><br></div>
+	<h2>Erident Custom Login and Dashboard Settings</h2>
+	<p><i>Plugin Loads default values for all below entries. Please change the values to yours.</i><br/><span style="background: #f9ff0a;">Click on the header of each block to open it.</span></p>
+	<form class="wp-erident-dashboard" method="post" action="options.php">
 <?php wp_nonce_field('update-options'); ?>
 
 <div class="postbox">
-<h3 class="hndle"><span>Dashboard Settings</span>
+<div class="handlediv" title="Click to toggle"><br></div>
+<h3 class="hndle" title="Click to toggle"><span>Dashboard Settings</span>
 <span class="postbox-title-action">(These settings will be reflected when a user/admin logins to the WordPress Dashboard)</span>
 </h3>
 <div class="inside">
@@ -307,7 +317,8 @@ value="<?php echo esc_html( get_option('wp_erident_dashboard_data_right') ); ?>"
 </div><!-- end postbox -->
 
 <div class="postbox">
-<h3 class="hndle"><span>Login Screen Background</span>
+<div class="handlediv" title="Click to toggle"><br></div>
+<h3 class="hndle" title="Click to toggle"><span>Login Screen Background</span>
 <span class="postbox-title-action">(The following settings will be reflected on the "wp-login.php" page)</span>
 </h3>
 <div class="inside">
@@ -390,10 +401,11 @@ value="<?php echo get_option('wp_erident_top_bg_ypos'); ?>" />
 
 
 <div class="postbox">
-<h3 class="hndle"><span>Login Screen Logo</span>
+<div class="handlediv" title="Click to toggle"><br></div>
+<h3 class="hndle" title="Click to toggle"><span>Login Screen Logo</span>
 <span class="postbox-title-action">(Change the default WordPress logo and powered by text)</span>
 </h3> 
-<div class="inside">
+<div class="inside openinside">
 <table>  
   <tr valign="top">
     <th scope="row">Logo Url:</th>
@@ -403,6 +415,24 @@ value="<?php echo get_option('wp_erident_dashboard_image_logo'); ?>" /> <span cl
     <span class="description">(URL path to image to replace default WordPress Logo. (You can upload your image with the WordPress media uploader)</span>
     </td>
   </tr>
+  
+  <tr valign="top">
+    <th scope="row">Logo Width:</th>
+   <td><input class="er-textfield-small" name="wp_erident_dashboard_image_logo_width" type="text" id="wp_erident_dashboard_image_logo_width"
+value="<?php echo get_option('wp_erident_dashboard_image_logo_width'); ?>" />px
+    <br />
+    <span class="description">Your Logo width(Enter in pixels). Default: 274px</span>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row">Logo Height:</th>
+   <td><input class="er-textfield-small" name="wp_erident_dashboard_image_logo_height" type="text" id="wp_erident_dashboard_image_logo_height"
+value="<?php echo get_option('wp_erident_dashboard_image_logo_height'); ?>" />px
+    <br />
+    <span class="description">Your Logo Height(Enter in pixels). Default: 63px</span>
+    </td>
+  </tr>
+  
   <tr valign="top">
     <th scope="row">Powered by Text:</th>
     <td><input class="er-textfield" name="wp_erident_dashboard_power_text" type="text" id="wp_erident_dashboard_power_text"
@@ -417,7 +447,8 @@ value="<?php echo get_option('wp_erident_dashboard_power_text'); ?>" />
 
 
 <div class="postbox">
-<h3 class="hndle"><span>Login Form Settings</span>
+<div class="handlediv" title="Click to toggle"><br></div>
+<h3 class="hndle" title="Click to toggle"><span>Login Form Settings</span>
 <span class="postbox-title-action">(The following settings will change the Login Form style)</span>
 </h3>
 <div class="inside">
@@ -681,7 +712,8 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 
 <div class="postbox">
-<h3 class="hndle"><span>Plugin Un-install Settings</span>
+<div class="handlediv" title="Click to toggle"><br></div>
+<h3 class="hndle" title="Click to toggle"><span>Plugin Un-install Settings</span>
 </h3>
 <div class="inside">
 <table border="0">
@@ -709,7 +741,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_ypos,wp_erident_dashboard_input_text_color,wp_erident_dashboard_label_text_size,wp_erident_dashboard_input_text_size" />
+<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_image_logo_width,wp_erident_dashboard_image_logo_height,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_ypos,wp_erident_dashboard_input_text_color,wp_erident_dashboard_label_text_size,wp_erident_dashboard_input_text_size" />
 
 <p>
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -774,9 +806,29 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 	jQuery('#ilctabscolorpicker8').farbtastic("#wp_erident_dashboard_input_text_color");
     jQuery("#wp_erident_dashboard_input_text_color").click(function(){jQuery('#ilctabscolorpicker8').slideDown()});
 	jQuery("#wp_erident_dashboard_input_text_color").blur(function(){jQuery('#ilctabscolorpicker8').slideUp()});
+	
+	$( ".postbox .hndle" ).on( "mouseover", function() {
+		$( this ).css( "cursor", "pointer" );
+	  });
+	
+	/* Sliding the panels */
+	jQuery(".postbox").on('click', '.handlediv', function(){
+		jQuery(this).siblings(".inside").slideToggle();
+});
+	jQuery(".postbox").on('click', '.hndle', function(){
+		jQuery(this).siblings(".inside").slideToggle();
+});
   });
  
 </script>
+ <style type="text/css">
+		.inside {
+				display: none;
+		}
+		.inside.openinside {
+				display: block;
+		}
+ </style>
 <?php
 }
 ?>

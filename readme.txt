@@ -1,10 +1,10 @@
 === Erident Custom Login and Dashboard ===
 Contributors: libinvbabu
 Donate link: http://www.libin.in
-Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, branding
+Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
-Tested up to: 3.5.1
-Stable tag: 1.5.1
+Tested up to: 3.7.1
+Stable tag: 2.0.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Dashboard footer etc.
 
 == Description ==
 
-TOP RATED PLUGIN for Login Page Customization. Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
+TOP RATED PLUGIN for Login Page Customization, celebrating 1 year of success!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
 
 Fastest support for the plugin. If you have any queries, 
 visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
@@ -26,7 +26,7 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 1. Add Image/Color Background to Login Form.
 1. Pick color using awesome jQuery color picker
 1. Change Texts/Links Color and size on Login Form
-1. Replace the WordPress Logo on the Login Form with your own.
+1. Replace the WordPress Logo on the Login Form with your own (Now support your own size logo).
 1. Enable/Disable shadow for the Links on Login Form
 1. Enable/Disable shadow for the Login Form
 1. Preserve previous settings upon WordPress/plugins update!
@@ -50,6 +50,8 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 * Login Screen Background Repeat
 * Login Screen Background Position
 * Logo Url
+* Logo width
+* Logo height
 * Powered by Text
 * Login form width
 * Login Form Border Style/Radius/Color/Thickness
@@ -109,6 +111,10 @@ make sure to backup your changes before updating.
 
 == Changelog ==
 
+= 2.0.0 =
+* Enhanced UI for easy usage (Added an option to hide/show settings block)
+* Added option for Logo Width and Height
+
 = 1.5.1 =
 * Fixed a small bug
 * Help texts improved and added new FAQ question
@@ -137,5 +143,5 @@ make sure to backup your changes before updating.
 
 == Upgrade Notice ==
 
-= 1.5.1 =
-This version fixed a small bug and updated some texts. Upgrade now.
+= 2.0.0 =
+This version has enhanced UI for settings page and new options!
