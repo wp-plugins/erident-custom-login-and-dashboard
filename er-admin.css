@@ -96,3 +96,9 @@ font-size: 15px;
 .er_notice2 li.login-page a {
 	color:red;
 }
+.settings_page_erident-custom-login-and-dashboard .inside {
+	display: none;
+}
+.settings_page_erident-custom-login-and-dashboard .inside.openinside {
+	display: block;
+}

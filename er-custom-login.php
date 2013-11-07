@@ -3,7 +3,7 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 2.0.0
+Version: 2.0.1
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -755,7 +755,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     <li class="login-page"><a href="<?php bloginfo( 'wpurl' ); ?>/wp-login.php" target="_blank">Open Your WP Login Page in a New Tab</a></li>
     <li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank">Plugin Documentation</a></li>
     <li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank">Plugin Support Page</a></li>
-    <li><a href="http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard" target="_blank">Plugin Website</a></li>
+    <li><a href="http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1" target="_blank">Feature Request/Suggestions?</a></li>
 </ul>
 </div><!-- end .er_notice2 -->
 	<div class="er_notice">
@@ -807,28 +807,20 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     jQuery("#wp_erident_dashboard_input_text_color").click(function(){jQuery('#ilctabscolorpicker8').slideDown()});
 	jQuery("#wp_erident_dashboard_input_text_color").blur(function(){jQuery('#ilctabscolorpicker8').slideUp()});
 	
-	$( ".postbox .hndle" ).on( "mouseover", function() {
-		$( this ).css( "cursor", "pointer" );
-	  });
+	jQuery( ".postbox .hndle" ).on( "mouseover", function() {
+		jQuery( this ).css( "cursor", "pointer" );
+	});
 	
 	/* Sliding the panels */
 	jQuery(".postbox").on('click', '.handlediv', function(){
 		jQuery(this).siblings(".inside").slideToggle();
-});
+	});
 	jQuery(".postbox").on('click', '.hndle', function(){
 		jQuery(this).siblings(".inside").slideToggle();
-});
+	});
   });
  
 </script>
- <style type="text/css">
-		.inside {
-				display: none;
-		}
-		.inside.openinside {
-				display: block;
-		}
- </style>
 <?php
 }
 ?>

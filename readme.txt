@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 3.7.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,11 @@ Dashboard footer etc.
 
 == Description ==
 
-TOP RATED PLUGIN for Login Page Customization, celebrating 1 year of success!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
+TOP RATED PLUGIN for Login Page Customization, celebrating 1 year of success!!! Customize completely your WordPress Login Screen and 
+
+Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer 
+
+text also for complete branding.
 
 Fastest support for the plugin. If you have any queries, 
 visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
@@ -69,9 +73,7 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 
 * Delete custom settings upon plugin deactivation or not
 
-Here's the link to [Plugin Website](http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard).
-
-Enjoy your completely branded WordPress Version. Don't forget to rate the plugin :)
+Enjoy your completely branded WordPress Version. Don't forget to [rate the plugin](http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard) :)
 
 == Installation ==
 
@@ -102,7 +104,7 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 = I want some custom changes. How can I do that? =
 You can edit the plugin's php file through WordPress plugin editor. But once you made an update the changes you made will disappear. So 
 
-make sure to backup your changes before updating.
+make sure to backup your changes before updating. Or inform us [Suggestions/requests](http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1) for future version
 
 == Screenshots ==
 
@@ -110,6 +112,9 @@ make sure to backup your changes before updating.
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 2.0.1 =
+* Bug Fix
 
 = 2.0.0 =
 * Enhanced UI for easy usage (Added an option to hide/show settings block)
@@ -143,5 +148,5 @@ make sure to backup your changes before updating.
 
 == Upgrade Notice ==
 
-= 2.0.0 =
-This version has enhanced UI for settings page and new options!
+= 2.0.1 =
+Bug fix for some conflicts.
