@@ -3,13 +3,13 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 2.0.1
+Version: 2.1.0
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
 */
 
-/*  Copyright 2013  Libin V Babu  (email : libin@libin.in)
+/*  Copyright 2014  Libin V Babu  (email : libin@libin.in)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -99,7 +99,8 @@ function er_login_logo() {
  $er_top_bg_repeat = get_option('wp_erident_top_bg_repeat');
  $er_top_bg_xpos = get_option('wp_erident_top_bg_xpos');
  $er_top_bg_ypos = get_option('wp_erident_top_bg_ypos');
-
+ $er_top_bg_size = get_option('wp_erident_top_bg_size');
+ 
  $er_login_bg_image = get_option('wp_erident_login_bg_image');
  $er_login_bg_repeat = get_option('wp_erident_login_bg_repeat');
  $er_login_bg_xpos = get_option('wp_erident_login_bg_xpos');
@@ -108,6 +109,7 @@ function er_login_logo() {
     <style type="text/css">
         body.login {
 			background: <?php echo $er_top_bg_color ?> url(<?php echo $er_top_bg_image ?>) <?php echo $er_top_bg_repeat ?> <?php echo $er_top_bg_xpos ?> <?php echo $er_top_bg_ypos ?>;
+			background-size: <?php echo $er_top_bg_size ?>;
 		}
 		body.login div#login h1 a {
             background-image: url(<?php echo $er_logo ?>);
@@ -168,7 +170,7 @@ register_deactivation_hook( __FILE__, 'wp_erident_dashboard_remove' );
 function wp_erident_dashboard_install() {
 /* Creates new database field */
 add_option("wp_erident_dashboard_data_left", 'Powered by www.libin.in', '', 'yes');
-add_option("wp_erident_dashboard_data_right", '&copy; 2013 All Rights Reserved', '', 'yes');
+add_option("wp_erident_dashboard_data_right", '&copy; 2014 All Rights Reserved', '', 'yes');
 add_option("wp_erident_dashboard_image_logo", plugins_url('images/default-logo.png', __FILE__), '', 'yes');
 add_option("wp_erident_dashboard_image_logo_width", '274', '', 'yes');
 add_option("wp_erident_dashboard_image_logo_height", '63', '', 'yes');
@@ -200,6 +202,7 @@ add_option("wp_erident_login_bg_image", plugins_url('images/form_bg.jpg', __FILE
 add_option("wp_erident_login_bg_repeat", 'repeat', '', 'yes');
 add_option("wp_erident_login_bg_xpos", 'top', '', 'yes');
 add_option("wp_erident_login_bg_ypos", 'left', '', 'yes');
+add_option("wp_erident_top_bg_size", 'auto', '', 'yes');
 
 add_option("wp_erident_dashboard_delete_db", 'No', '', 'yes');
 }
@@ -240,6 +243,7 @@ delete_option('wp_erident_login_bg_image');
 delete_option('wp_erident_login_bg_repeat');
 delete_option('wp_erident_login_bg_xpos');
 delete_option('wp_erident_login_bg_ypos');
+delete_option('wp_erident_top_bg_size');
 
 delete_option('wp_erident_dashboard_delete_db');
 	}
@@ -392,6 +396,15 @@ value="<?php echo get_option('wp_erident_top_bg_xpos'); ?>" />
 value="<?php echo get_option('wp_erident_top_bg_ypos'); ?>" />
     <br />
     <span class="description">The background-position property sets the starting position of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. This will not show any changes if you set the Background Repeat option as "Repeat". <a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank">More Info</a></span>
+    </td>
+  </tr>
+  
+  <tr valign="top">
+    <th scope="row">Background Size:</th>
+    <td><input class="er-textfield-small" name="wp_erident_top_bg_size" type="text" id="wp_erident_top_bg_size"
+value="<?php echo get_option('wp_erident_top_bg_size'); ?>" />
+    <br />
+    <span class="description">The background-size property specifies the size of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. Possible values: auto, length, percentage, cover, contain. <a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank">More Info</a></span>
     </td>
   </tr>
   
@@ -741,7 +754,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_image_logo_width,wp_erident_dashboard_image_logo_height,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_ypos,wp_erident_dashboard_input_text_color,wp_erident_dashboard_label_text_size,wp_erident_dashboard_input_text_size" />
+<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_image_logo_width,wp_erident_dashboard_image_logo_height,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_ypos,wp_erident_dashboard_input_text_color,wp_erident_dashboard_label_text_size,wp_erident_dashboard_input_text_size,wp_erident_top_bg_size" />
 
 <p>
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -759,8 +772,8 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 </ul>
 </div><!-- end .er_notice2 -->
 	<div class="er_notice">
-		<h3>Wants to customize your WordPress theme?</h3>
-		<p>If you wants professional customization to your wordpress themes, Contact <a href="http://www.libin.in" target="_blank">www.libin.in</a></p>
+		<h3>Hire Me</h3>
+		<p>Hey, I'm Libin, a professional Front End Engineer/WordPress Developer. You can hire me for freelancing projects.<br/><br/>Email me: <a href="mailto:libin@libin.in">libin@libin.in</a> <br/>Online Portfolio: <a href="http://www.libin.in" target="_blank">www.libin.in</a></p>
 	</div><!-- end .er_notice -->
     
 </div>
