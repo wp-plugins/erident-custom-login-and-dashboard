@@ -3,7 +3,7 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 2.1.0
+Version: 2.1.1
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -107,9 +107,9 @@ function er_login_logo() {
  $er_login_bg_ypos = get_option('wp_erident_login_bg_ypos');
 ?>
     <style type="text/css">
-        body.login {
-			background: <?php echo $er_top_bg_color ?> url(<?php echo $er_top_bg_image ?>) <?php echo $er_top_bg_repeat ?> <?php echo $er_top_bg_xpos ?> <?php echo $er_top_bg_ypos ?>;
-			background-size: <?php echo $er_top_bg_size ?>;
+        html body.login {
+			background: <?php echo $er_top_bg_color ?> url(<?php echo $er_top_bg_image ?>) <?php echo $er_top_bg_repeat ?> <?php echo $er_top_bg_xpos ?> <?php echo $er_top_bg_ypos ?> !important;
+			background-size: <?php echo $er_top_bg_size ?> !important;
 		}
 		body.login div#login h1 a {
             background-image: url(<?php echo $er_logo ?>);

@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 3.8.1
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,7 @@ Dashboard footer etc.
 
 == Description ==
 
-TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and 
-
-Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
+TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
 
 Fastest support for the plugin. If you have any queries, 
 visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
@@ -112,6 +110,9 @@ make sure to backup your changes before updating. Or inform us [Suggestions/requ
 
 == Changelog ==
 
+= 2.1.1 =
+* Fixed Background property overriding problem with some themes and plugins.
+
 = 2.1.0 =
 * Added Login Screen Background size Property
 
@@ -150,5 +151,5 @@ make sure to backup your changes before updating. Or inform us [Suggestions/requ
 
 == Upgrade Notice ==
 
-= 2.1.0 =
-Added new feature.
+= 2.1.1 =
+Bug Fix.
