@@ -4,13 +4,11 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 3.8.1
-Stable tag: 2.1.1
+Stable tag: 2.2.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Customize completely your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, 
-
-Dashboard footer etc.
+Customize completely your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, Dashboard footer etc.
 
 == Description ==
 
@@ -99,9 +97,7 @@ Settings page.
 By default you will not lose any of your previous settings. Check the Plugin Un-install Settings.
 
 = I want some custom changes. How can I do that? =
-You can edit the plugin's php file through WordPress plugin editor. But once you made an update the changes you made will disappear. So 
-
-make sure to backup your changes before updating. Or inform us [Suggestions/requests](http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1) for future version
+You can edit the plugin's php file through WordPress plugin editor. But once you made an update the changes you made will disappear. So make sure to backup your changes before updating. Or inform us [Suggestions/requests](http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1) for future version
 
 == Screenshots ==
 
@@ -109,6 +105,10 @@ make sure to backup your changes before updating. Or inform us [Suggestions/requ
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 2.2.0 =
+* New Default UI for login page.
+* Optimized the backend files.
 
 = 2.1.1 =
 * Fixed Background property overriding problem with some themes and plugins.
@@ -151,5 +151,5 @@ make sure to backup your changes before updating. Or inform us [Suggestions/requ
 
 == Upgrade Notice ==
 
-= 2.1.1 =
-Bug Fix.
+= 2.2.0 =
+File optimization for better usability.

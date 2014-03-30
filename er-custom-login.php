@@ -3,7 +3,7 @@
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 2.1.1
+Version: 2.2.0
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -25,29 +25,24 @@ License: GPL
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 function my_admin_head() {
-        echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('er-admin.css', __FILE__). '">';
-		echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('farbtastic/farbtastic.css', __FILE__). '">';
+    echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('er-admin.css', __FILE__). '">';
+	echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('farbtastic/farbtastic.css', __FILE__). '">';
 }
 
 add_action('admin_head', 'my_admin_head');
-
-/**
- * Add Settings link to plugins
- */
+/* Add Settings link to plugins */
 function er_add_settings_link($links, $file) {
-static $this_plugin;
-if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
+	static $this_plugin;
+	if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
 
-if ($file == $this_plugin){
-$settings_link = '<a href="options-general.php?page=erident-custom-login-and-dashboard">'.__("Settings", "erident-custom-login-and-dashboard").'</a>';
- array_unshift($links, $settings_link);
+	if ($file == $this_plugin){
+		$settings_link = '<a href="options-general.php?page=erident-custom-login-and-dashboard">'.__("Settings", "erident-custom-login-and-dashboard").'</a>';
+		array_unshift($links, $settings_link);
+	}
+	return $links;
 }
-return $links;
- }
 add_filter('plugin_action_links', 'er_add_settings_link', 10, 2 );
-
 
 add_filter('admin_footer_text', 'left_admin_footer_text_output'); //left side
 function left_admin_footer_text_output($er_left) {
@@ -60,52 +55,52 @@ function right_admin_footer_text_output($er_right) {
     $er_right = get_option('wp_erident_dashboard_data_right');
     return $er_right;
 }
+
 /* Login Logo */
-function er_login_logo() { 
- $er_logo = get_option('wp_erident_dashboard_image_logo');
- $er_logo_width = get_option('wp_erident_dashboard_image_logo_width');
- $er_logo_height = get_option('wp_erident_dashboard_image_logo_height');
+function er_login_logo() {
+	$er_logo = get_option('wp_erident_dashboard_image_logo');
+	$er_logo_width = get_option('wp_erident_dashboard_image_logo_width');
+	$er_logo_height = get_option('wp_erident_dashboard_image_logo_height');
+	
+	$er_login_width = get_option('wp_erident_dashboard_login_width');
+	$er_login_radius = get_option('wp_erident_dashboard_login_radius');
+	$er_login_border = get_option('wp_erident_dashboard_login_border');
+	$er_login_border_thick = get_option('wp_erident_dashboard_border_thick');
+	$er_login_border_color = get_option('wp_erident_dashboard_border_color');
+	$er_login_bg = get_option('wp_erident_dashboard_login_bg');
+	$er_login_text_color = get_option('wp_erident_dashboard_text_color');
+	$er_login_input_text_color = get_option('wp_erident_dashboard_input_text_color');
+	$er_login_label_text_size = get_option('wp_erident_dashboard_label_text_size');
+	$er_login_input_text_size = get_option('wp_erident_dashboard_input_text_size');
+	$er_login_link_color = get_option('wp_erident_dashboard_link_color');
  
- $er_login_width = get_option('wp_erident_dashboard_login_width');
- $er_login_radius = get_option('wp_erident_dashboard_login_radius');
- $er_login_border = get_option('wp_erident_dashboard_login_border');
- $er_login_border_thick = get_option('wp_erident_dashboard_border_thick');
- $er_login_border_color = get_option('wp_erident_dashboard_border_color');
- $er_login_bg = get_option('wp_erident_dashboard_login_bg');
- $er_login_text_color = get_option('wp_erident_dashboard_text_color');
- $er_login_input_text_color = get_option('wp_erident_dashboard_input_text_color');
- $er_login_label_text_size = get_option('wp_erident_dashboard_label_text_size');
- $er_login_input_text_size = get_option('wp_erident_dashboard_input_text_size');
- $er_login_link_color = get_option('wp_erident_dashboard_link_color');
- 
- 
- $check_shadow = get_option('wp_erident_dashboard_check_shadow');
+	$check_shadow = get_option('wp_erident_dashboard_check_shadow');
 	if($check_shadow == Yes) { 
- 		$er_login_link_shadow = get_option('wp_erident_dashboard_link_shadow').' 0 1px 0';
+		$er_login_link_shadow = get_option('wp_erident_dashboard_link_shadow').' 0 1px 0';
 	}
 	else {
 		$er_login_link_shadow = "none";
 	}
-  $check_fshadow = get_option('wp_erident_dashboard_check_form_shadow');
+	$check_fshadow = get_option('wp_erident_dashboard_check_form_shadow');
 	if($check_fshadow == Yes) { 
- 		$er_login_form_shadow = '0 4px 10px -1px '.get_option('wp_erident_dashboard_form_shadow');
+		$er_login_form_shadow = '0 4px 10px -1px '.get_option('wp_erident_dashboard_form_shadow');
 	}
 	else {
 		$er_login_form_shadow = "none";
 	}
  
- $er_top_bg_color = get_option('wp_erident_top_bg_color');
- $er_top_bg_image = get_option('wp_erident_top_bg_image');
- $er_top_bg_repeat = get_option('wp_erident_top_bg_repeat');
- $er_top_bg_xpos = get_option('wp_erident_top_bg_xpos');
- $er_top_bg_ypos = get_option('wp_erident_top_bg_ypos');
- $er_top_bg_size = get_option('wp_erident_top_bg_size');
- 
- $er_login_bg_image = get_option('wp_erident_login_bg_image');
- $er_login_bg_repeat = get_option('wp_erident_login_bg_repeat');
- $er_login_bg_xpos = get_option('wp_erident_login_bg_xpos');
- $er_login_bg_ypos = get_option('wp_erident_login_bg_ypos');
-?>
+	$er_top_bg_color = get_option('wp_erident_top_bg_color');
+	$er_top_bg_image = get_option('wp_erident_top_bg_image');
+	$er_top_bg_repeat = get_option('wp_erident_top_bg_repeat');
+	$er_top_bg_xpos = get_option('wp_erident_top_bg_xpos');
+	$er_top_bg_ypos = get_option('wp_erident_top_bg_ypos');
+	$er_top_bg_size = get_option('wp_erident_top_bg_size');
+	
+	$er_login_bg_image = get_option('wp_erident_login_bg_image');
+	$er_login_bg_repeat = get_option('wp_erident_login_bg_repeat');
+	$er_login_bg_xpos = get_option('wp_erident_login_bg_xpos');
+	$er_login_bg_ypos = get_option('wp_erident_login_bg_ypos');
+	?>
     <style type="text/css">
         html body.login {
 			background: <?php echo $er_top_bg_color ?> url(<?php echo $er_top_bg_image ?>) <?php echo $er_top_bg_repeat ?> <?php echo $er_top_bg_xpos ?> <?php echo $er_top_bg_ypos ?> !important;
@@ -145,7 +140,8 @@ function er_login_logo() {
 			text-shadow: <?php echo $er_login_link_shadow ?>;
 		}
     </style>
-<?php }
+	<?php
+}
 add_action( 'login_enqueue_scripts', 'er_login_logo' );
 
 /* Login Links */
@@ -169,18 +165,18 @@ register_deactivation_hook( __FILE__, 'wp_erident_dashboard_remove' );
 
 function wp_erident_dashboard_install() {
 /* Creates new database field */
-add_option("wp_erident_dashboard_data_left", 'Powered by www.libin.in', '', 'yes');
+add_option("wp_erident_dashboard_data_left", 'Powered by YourWebsiteName', '', 'yes');
 add_option("wp_erident_dashboard_data_right", '&copy; 2014 All Rights Reserved', '', 'yes');
 add_option("wp_erident_dashboard_image_logo", plugins_url('images/default-logo.png', __FILE__), '', 'yes');
 add_option("wp_erident_dashboard_image_logo_width", '274', '', 'yes');
 add_option("wp_erident_dashboard_image_logo_height", '63', '', 'yes');
-add_option("wp_erident_dashboard_power_text", 'Powered by www.libin.in', '', 'yes');
+add_option("wp_erident_dashboard_power_text", 'Powered by YourWebsiteName', '', 'yes');
 
 add_option("wp_erident_dashboard_login_width", '350', '', 'yes');
 add_option("wp_erident_dashboard_login_radius", '10', '', 'yes');
 add_option("wp_erident_dashboard_login_border", 'solid', '', 'yes');
 add_option("wp_erident_dashboard_border_thick", '4', '', 'yes');
-add_option("wp_erident_dashboard_border_color", '#6e838e', '', 'yes');
+add_option("wp_erident_dashboard_border_color", '#0069A0', '', 'yes');
 add_option("wp_erident_dashboard_login_bg", '#dbdbdb', '', 'yes');
 add_option("wp_erident_dashboard_text_color", '#000000', '', 'yes');
 add_option("wp_erident_dashboard_input_text_color", '#555555', '', 'yes');
@@ -250,23 +246,18 @@ delete_option('wp_erident_dashboard_delete_db');
 	else { }
 }
 
-
 if ( is_admin() ){
-
-
- add_action( 'admin_init', 'wp_erident_dashboard_admin_init' );
-    add_action( 'admin_menu', 'wp_erident_dashboard_admin_menu' );
+	add_action( 'admin_init', 'wp_erident_dashboard_admin_init' );
+	add_action( 'admin_menu', 'wp_erident_dashboard_admin_menu' );
 
     function wp_erident_dashboard_admin_init() {
-        /* Register our script. */
-        wp_register_script('wp_erident_dashboard-script', plugins_url('/farbtastic/farbtastic.js', __FILE__));
-		wp_register_script('wp_erident_dashboard-script2', plugins_url('/farbtastic/jquery.js', __FILE__));
+        /* Register our script.*/
+		wp_enqueue_script( 'farbtastic', array('jquery') );
     }
 
     function wp_erident_dashboard_admin_menu() {
         /* Register our plugin page */
-        $page = add_options_page('Custom Login and Dashboard', 'Custom Login and Dashboard', 'administrator',
-'erident-custom-login-and-dashboard', 'wp_erident_dashboard_html_page');
+        $page = add_options_page('Custom Login and Dashboard', 'Custom Login and Dashboard', 'administrator', 'erident-custom-login-and-dashboard', 'wp_erident_dashboard_html_page');
 
         /* Using registered $page handle to hook script load */
         add_action('admin_print_styles-' . $page, 'wp_erident_dashboard_admin_styles');
@@ -769,6 +760,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     <li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank">Plugin Documentation</a></li>
     <li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank">Plugin Support Page</a></li>
     <li><a href="http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1" target="_blank">Feature Request/Suggestions?</a></li>
+	<li class="green"><a href="http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard" target="_blank">Got some Love? Give us a 5 star rating!</a></li>
 </ul>
 </div><!-- end .er_notice2 -->
 	<div class="er_notice">
