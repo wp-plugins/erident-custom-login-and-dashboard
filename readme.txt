@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 3.8.1
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,10 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 
 == Changelog ==
 
+= 2.2.1 =
+* Fixed constants Notice.
+* Fixed Image background cut on small screen resolutions.
+
 = 2.2.0 =
 * New Default UI for login page.
 * Optimized the backend files.
@@ -151,5 +155,5 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 
 == Upgrade Notice ==
 
-= 2.2.0 =
-File optimization for better usability.
+= 2.2.1 =
+Bug Fixes on login page.
