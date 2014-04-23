@@ -2,8 +2,10 @@
 /*
 Plugin Name: Erident Custom Login and Dashboard
 Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashboard
-Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles etc. Customize your Dashboard footer text also for complete branding.
-Version: 2.2.1
+Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
+Text Domain: erident-custom-login-and-dashboard
+Domain Path: /languages
+Version: 2.3.0
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -24,6 +26,8 @@ License: GPL
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+load_plugin_textdomain('erident-custom-login-and-dashboard', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 
 function my_admin_head() {
     echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('er-admin.css', __FILE__). '">';
@@ -73,6 +77,7 @@ function er_login_logo() {
 	$er_login_label_text_size = get_option('wp_erident_dashboard_label_text_size');
 	$er_login_input_text_size = get_option('wp_erident_dashboard_input_text_size');
 	$er_login_link_color = get_option('wp_erident_dashboard_link_color');
+	$er_login_button_color = get_option('wp_erident_dashboard_button_color');
  
 	$check_shadow = get_option('wp_erident_dashboard_check_shadow');
 	if($check_shadow == "Yes") { 
@@ -100,6 +105,25 @@ function er_login_logo() {
 	$er_login_bg_repeat = get_option('wp_erident_login_bg_repeat');
 	$er_login_bg_xpos = get_option('wp_erident_login_bg_xpos');
 	$er_login_bg_ypos = get_option('wp_erident_login_bg_ypos');
+	
+	
+	function hex2rgb( $colour ) {
+        if ( $colour[0] == '#' ) {
+                $colour = substr( $colour, 1 );
+        }
+        if ( strlen( $colour ) == 6 ) {
+                list( $r, $g, $b ) = array( $colour[0] . $colour[1], $colour[2] . $colour[3], $colour[4] . $colour[5] );
+        } elseif ( strlen( $colour ) == 3 ) {
+                list( $r, $g, $b ) = array( $colour[0] . $colour[0], $colour[1] . $colour[1], $colour[2] . $colour[2] );
+        } else {
+                return false;
+        }
+        $r = hexdec( $r );
+        $g = hexdec( $g );
+        $b = hexdec( $b );
+        return array( 'red' => $r, 'green' => $g, 'blue' => $b );
+	}
+	$btnrgba =  hex2rgb( $er_login_button_color );
 	?>
     <style type="text/css">
 		/* Styles loading from Erident Custom Login and Dashboard Plugin*/
@@ -132,6 +156,13 @@ function er_login_logo() {
 		body.login div#login form p label {
 			color:<?php echo $er_login_text_color ?>;
 			font-size:<?php echo $er_login_label_text_size ?>px;
+		}
+		body.login #loginform p.submit .button-primary {
+			background: <?php echo $er_login_button_color ?> !important;
+			border: none !important;
+		}
+		body.login #loginform p.submit .button-primary:hover, body.login #loginform p.submit .button-primary:focus {
+			background: rgba(<?php echo $btnrgba['red'];?>,<?php echo $btnrgba['green']?>,<?php echo $btnrgba['blue']?>, 0.9) !important;
 		}
 		body.login div#login form .input, .login input[type="text"] {
 				color: <?php echo $er_login_input_text_color ?>;
@@ -192,6 +223,8 @@ add_option("wp_erident_dashboard_check_shadow", 'Yes', '', 'yes');
 add_option("wp_erident_dashboard_link_shadow", '#ffffff', '', 'yes');
 add_option("wp_erident_dashboard_check_form_shadow", 'Yes', '', 'yes');
 add_option("wp_erident_dashboard_form_shadow", '#C8C8C8', '', 'yes');
+add_option("wp_erident_dashboard_button_color", '#5E5E5E', '', 'yes');
+
 
 add_option("wp_erident_top_bg_color", '#f9fad2', '', 'yes');
 add_option("wp_erident_top_bg_image", plugins_url('images/top_bg.jpg', __FILE__), '', 'yes');
@@ -233,6 +266,7 @@ delete_option('wp_erident_dashboard_check_shadow');
 delete_option('wp_erident_dashboard_link_shadow');
 delete_option('wp_erident_dashboard_check_form_shadow');
 delete_option('wp_erident_dashboard_form_shadow');
+delete_option('wp_erident_dashboard_button_color');
 
 delete_option('wp_erident_top_bg_color');
 delete_option('wp_erident_top_bg_image');
@@ -261,7 +295,7 @@ if ( is_admin() ){
 
     function wp_erident_dashboard_admin_menu() {
         /* Register our plugin page */
-        $page = add_options_page('Custom Login and Dashboard', 'Custom Login and Dashboard', 'administrator', 'erident-custom-login-and-dashboard', 'wp_erident_dashboard_html_page');
+        $page = add_options_page(__('Custom Login and Dashboard', 'erident-custom-login-and-dashboard'), __('Custom Login and Dashboard', 'erident-custom-login-and-dashboard'), 'administrator', 'erident-custom-login-and-dashboard', 'wp_erident_dashboard_html_page');
 
         /* Using registered $page handle to hook script load */
         add_action('admin_print_styles-' . $page, 'wp_erident_dashboard_admin_styles');
@@ -282,33 +316,33 @@ function wp_erident_dashboard_html_page() {
 
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br></div>
-	<h2>Erident Custom Login and Dashboard Settings</h2>
-	<p><i>Plugin Loads default values for all below entries. Please change the values to yours.</i><br/><span style="background: #f9ff0a;">Click on the header of each block to open it.</span></p>
+	<h2><?php _e( 'Erident Custom Login and Dashboard Settings', 'erident-custom-login-and-dashboard' ); ?></h2>
+	<p><i><?php _e( 'Plugin Loads default values for all below entries. Please change the values to yours.', 'erident-custom-login-and-dashboard' ); ?></i><br/><span style="background: #f9ff0a;"><?php _e( 'Click on the header of each block to open it.', 'erident-custom-login-and-dashboard' ); ?></span></p>
 	<form class="wp-erident-dashboard" method="post" action="options.php">
 <?php wp_nonce_field('update-options'); ?>
 
 <div class="postbox">
 <div class="handlediv" title="Click to toggle"><br></div>
-<h3 class="hndle" title="Click to toggle"><span>Dashboard Settings</span>
-<span class="postbox-title-action">(These settings will be reflected when a user/admin logins to the WordPress Dashboard)</span>
+<h3 class="hndle" title="Click to toggle"><span><?php _e( 'Dashboard Settings', 'erident-custom-login-and-dashboard' ); ?></span>
+<span class="postbox-title-action"><?php _e( '(These settings will be reflected when a user/admin logins to the WordPress Dashboard)', 'erident-custom-login-and-dashboard' ); ?></span>
 </h3>
 <div class="inside">
 <table border="0">
   <tr valign="top">
-    <th scope="row">Enter the text for dashboard left side footer:</th>
+    <th scope="row"><?php _e( 'Enter the text for dashboard left side footer:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield" name="wp_erident_dashboard_data_left" type="text" id="wp_erident_dashboard_data_left"
 value="<?php echo esc_html( get_option('wp_erident_dashboard_data_left') ); ?>" placeholder="Text for dashboard left side footer" />
 	<br />
-    <span class="description">This will replace the default "Thank you for creating with WordPress" on the bottom left side of dashboard</span>
+    <span class="description"><?php _e( 'This will replace the default "Thank you for creating with WordPress" on the bottom left side of dashboard', 'erident-custom-login-and-dashboard' ); ?></span>
 	</td>
   </tr>
   <tr valign="top">
-    <th scope="row">Enter the text for dashboard right side footer:</th>
+    <th scope="row"><?php _e( 'Enter the text for dashboard right side footer:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="wp_erident_dashboard_data_right" type="text" id="wp_erident_dashboard_data_right"
 value="<?php echo esc_html( get_option('wp_erident_dashboard_data_right') ); ?>" placeholder="Text for dashboard left right footer"  />
     <br />
-    <span class="description">This will replace the default "WordPress Version" on the bottom right side of dashboard</span>
+    <span class="description"><?php _e( 'This will replace the default "WordPress Version" on the bottom right side of dashboard', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
 </table>
@@ -317,31 +351,31 @@ value="<?php echo esc_html( get_option('wp_erident_dashboard_data_right') ); ?>"
 
 <div class="postbox">
 <div class="handlediv" title="Click to toggle"><br></div>
-<h3 class="hndle" title="Click to toggle"><span>Login Screen Background</span>
-<span class="postbox-title-action">(The following settings will be reflected on the "wp-login.php" page)</span>
+<h3 class="hndle" title="Click to toggle"><span><?php _e( 'Login Screen Background', 'erident-custom-login-and-dashboard' ); ?></span>
+<span class="postbox-title-action"><?php _e( '(The following settings will be reflected on the "wp-login.php" page)', 'erident-custom-login-and-dashboard' ); ?></span>
 </h3>
 <div class="inside">
 <table border="0">
   <tr valign="top">
-    <th scope="row">Login Screen Background Color:</th>
+    <th scope="row"><?php _e( 'Login Screen Background Color:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_top_bg_color" name="wp_erident_top_bg_color" value="<?php echo get_option('wp_erident_top_bg_color'); ?>" />
     <div id="ilctabscolorpicker4"></div>
     <br />
-    <span class="description">Click the box to select a color.</span>
+    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <tr valign="top">
-    <th scope="row">Login Screen Background Image:</th>
+    <th scope="row"><?php _e( 'Login Screen Background Image:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="wp_erident_top_bg_image" type="text" id="wp_erident_top_bg_image"
 value="<?php echo get_option('wp_erident_top_bg_image'); ?>" />
     <br />
-    <span class="description">Add your own pattern/image url for the screen background. Leave blank if you don't need any images.</span>
+    <span class="description"><?php _e( 'Add your own pattern/image url for the screen background. Leave blank if you don\'t need any images.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Screen Background Repeat</th>
+    <th scope="row"><?php _e( 'Login Screen Background Repeat', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <?php 
 	$er_screen_repeat = get_option('wp_erident_top_bg_repeat');
@@ -380,26 +414,26 @@ value="<?php echo get_option('wp_erident_top_bg_image'); ?>" />
     </select>
     
     <br />
-    <span class="description">Select an image repeat option from dropdown.</span>
+    <span class="description"><?php _e( 'Select an image repeat option from dropdown.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Background Position:</th>
-    <td>Horizontal Position: <input class="er-textfield-small" name="wp_erident_top_bg_xpos" type="text" id="wp_erident_top_bg_xpos"
+    <th scope="row"><?php _e( 'Background Position:', 'erident-custom-login-and-dashboard' ); ?></th>
+    <td><?php _e( 'Horizontal Position: ', 'erident-custom-login-and-dashboard' ); ?> <input class="er-textfield-small" name="wp_erident_top_bg_xpos" type="text" id="wp_erident_top_bg_xpos"
 value="<?php echo get_option('wp_erident_top_bg_xpos'); ?>" />
 	Vertical Position: <input class="er-textfield-small" name="wp_erident_top_bg_ypos" type="text" id="wp_erident_top_bg_ypos"
 value="<?php echo get_option('wp_erident_top_bg_ypos'); ?>" />
     <br />
-    <span class="description">The background-position property sets the starting position of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. This will not show any changes if you set the Background Repeat option as "Repeat". <a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank">More Info</a></span>
+    <span class="description"><?php _e( 'The background-position property sets the starting position of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. This will not show any changes if you set the Background Repeat option as "Repeat". <a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank">More Info</a>', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <tr valign="top">
-    <th scope="row">Background Size:</th>
+    <th scope="row"><?php _e( 'Background Size:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield-small" name="wp_erident_top_bg_size" type="text" id="wp_erident_top_bg_size"
 value="<?php echo get_option('wp_erident_top_bg_size'); ?>" />
     <br />
-    <span class="description">The background-size property specifies the size of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. Possible values: auto, length, percentage, cover, contain. <a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank">More Info</a></span>
+    <span class="description"><?php _e( 'The background-size property specifies the size of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. Possible values: auto, length, percentage, cover, contain. <a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank">More Info</a>', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
@@ -410,43 +444,43 @@ value="<?php echo get_option('wp_erident_top_bg_size'); ?>" />
 
 <div class="postbox">
 <div class="handlediv" title="Click to toggle"><br></div>
-<h3 class="hndle" title="Click to toggle"><span>Login Screen Logo</span>
-<span class="postbox-title-action">(Change the default WordPress logo and powered by text)</span>
+<h3 class="hndle" title="Click to toggle"><span><?php _e( 'Login Screen Logo', 'erident-custom-login-and-dashboard' ); ?></span>
+<span class="postbox-title-action"><?php _e( '(Change the default WordPress logo and powered by text)', 'erident-custom-login-and-dashboard' ); ?></span>
 </h3> 
 <div class="inside openinside">
 <table>  
   <tr valign="top">
-    <th scope="row">Logo Url:</th>
+    <th scope="row"><?php _e( 'Logo Url:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="wp_erident_dashboard_image_logo" type="text" id="wp_erident_dashboard_image_logo"
-value="<?php echo get_option('wp_erident_dashboard_image_logo'); ?>" /> <span class="description">Default Logo Size 274px × 63px</span>
+value="<?php echo get_option('wp_erident_dashboard_image_logo'); ?>" /> <span class="description"><?php _e( 'Default Logo Size 274px × 63px', 'erident-custom-login-and-dashboard' ); ?></span>
     <br />
-    <span class="description">(URL path to image to replace default WordPress Logo. (You can upload your image with the WordPress media uploader)</span>
+    <span class="description"><?php _e( '(URL path to image to replace default WordPress Logo. (You can upload your image with the WordPress media uploader)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <tr valign="top">
-    <th scope="row">Logo Width:</th>
+    <th scope="row"><?php _e( 'Logo Width:', 'erident-custom-login-and-dashboard' ); ?></th>
    <td><input class="er-textfield-small" name="wp_erident_dashboard_image_logo_width" type="text" id="wp_erident_dashboard_image_logo_width"
 value="<?php echo get_option('wp_erident_dashboard_image_logo_width'); ?>" />px
     <br />
-    <span class="description">Your Logo width(Enter in pixels). Default: 274px</span>
+    <span class="description"><?php _e( 'Your Logo width(Enter in pixels). Default: 274px', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Logo Height:</th>
+    <th scope="row"><?php _e( 'Logo Height:', 'erident-custom-login-and-dashboard' ); ?></th>
    <td><input class="er-textfield-small" name="wp_erident_dashboard_image_logo_height" type="text" id="wp_erident_dashboard_image_logo_height"
 value="<?php echo get_option('wp_erident_dashboard_image_logo_height'); ?>" />px
     <br />
-    <span class="description">Your Logo Height(Enter in pixels). Default: 63px</span>
+    <span class="description"><?php _e( 'Your Logo Height(Enter in pixels). Default: 63px', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <tr valign="top">
-    <th scope="row">Powered by Text:</th>
+    <th scope="row"><?php _e( 'Powered by Text:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="wp_erident_dashboard_power_text" type="text" id="wp_erident_dashboard_power_text"
 value="<?php echo get_option('wp_erident_dashboard_power_text'); ?>" />
     <br />
-    <span class="description">Show when mouse hover over custom Login logo</span>
+    <span class="description"><?php _e( 'Show when mouse hover over custom Login logo', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
 </table>
@@ -456,29 +490,29 @@ value="<?php echo get_option('wp_erident_dashboard_power_text'); ?>" />
 
 <div class="postbox">
 <div class="handlediv" title="Click to toggle"><br></div>
-<h3 class="hndle" title="Click to toggle"><span>Login Form Settings</span>
-<span class="postbox-title-action">(The following settings will change the Login Form style)</span>
+<h3 class="hndle" title="Click to toggle"><span><?php _e( 'Login Form Settings', 'erident-custom-login-and-dashboard' ); ?></span>
+<span class="postbox-title-action"><?php _e( '(The following settings will change the Login Form style)', 'erident-custom-login-and-dashboard' ); ?></span>
 </h3>
 <div class="inside">
 <table>
   <tr valign="top">
-    <th scope="row">Login form width:</th>
+    <th scope="row"><?php _e( 'Login form width:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield-small" name="wp_erident_dashboard_login_width" type="text" id="wp_erident_dashboard_login_width"
 value="<?php echo get_option('wp_erident_dashboard_login_width'); ?>" />px
     <br />
-    <span class="description">Total Form width(Enter in pixels). Default: 350px</span>
+    <span class="description"><?php _e( 'Total Form width(Enter in pixels). Default: 350px', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Border Radius:</th>
+    <th scope="row"><?php _e( 'Login Form Border Radius:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield-small" name="wp_erident_dashboard_login_radius" type="text" id="wp_erident_dashboard_login_radius"
 value="<?php echo get_option('wp_erident_dashboard_login_radius'); ?>" />px
     <br />
-    <span class="description">Border Radius of Login Form. This is the option to make the corners rounded.(Enter in pixels)</span>
+    <span class="description"><?php _e( 'Border Radius of Login Form. This is the option to make the corners rounded.(Enter in pixels)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Border Style</th>
+    <th scope="row"><?php _e( 'Login Border Style', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <?php 
 	$er_border = get_option('wp_erident_dashboard_login_border');
@@ -523,44 +557,44 @@ value="<?php echo get_option('wp_erident_dashboard_login_radius'); ?>" />px
     </select>
 
     <br />
-    <span class="description">Select a Border Style option from dropdown.</span>
+    <span class="description"><?php _e( 'Select a Border Style option from dropdown.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Border Thickness:</th>
+    <th scope="row"><?php _e( 'Login Border Thickness:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield-small" name="wp_erident_dashboard_border_thick" type="text" id="wp_erident_dashboard_border_thick"
 value="<?php echo get_option('wp_erident_dashboard_border_thick'); ?>" />px
     <br />
-    <span class="description">Thickness of Border (Enter value in pixels)</span>
+    <span class="description"><?php _e( 'Thickness of Border (Enter value in pixels)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Border Color:</th>
+    <th scope="row"><?php _e( 'Login Border Color:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_border_color" name="wp_erident_dashboard_border_color" value="<?php echo get_option('wp_erident_dashboard_border_color'); ?>" />
     <div id="ilctabscolorpicker"></div>
     <br />
-    <span class="description">Click the box to select a color.</span>
+    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Background Color:</th>
+    <th scope="row"><?php _e( 'Login Form Background Color:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_login_bg" name="wp_erident_dashboard_login_bg" value="<?php echo get_option('wp_erident_dashboard_login_bg'); ?>" />
     <div id="ilctabscolorpicker2"></div>
     <br />
-    <span class="description">Click the box to select a color.</span>
+    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Background Image:</th>
+    <th scope="row"><?php _e( 'Login Form Background Image:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="wp_erident_login_bg_image" type="text" id="wp_erident_login_bg_image" value="<?php echo get_option('wp_erident_login_bg_image'); ?>" />
     <br />
-    <span class="description">Add your own pattern/image url to the form background. Leave blank if you don't need any images.</span>
+    <span class="description"><?php _e( 'Add your own pattern/image url to the form background. Leave blank if you don\'t need any images.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Background Repeat</th>
+    <th scope="row"><?php _e( 'Login Form Background Repeat', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <?php 
 	$er_form_repeat = get_option('wp_erident_login_bg_repeat');
@@ -599,65 +633,65 @@ value="<?php echo get_option('wp_erident_dashboard_border_thick'); ?>" />px
     </select>
     
     <br />
-    <span class="description">Select an image repeat option from dropdown.</span>
+    <span class="description"><?php _e( 'Select an image repeat option from dropdown.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <tr valign="top">
-    <th scope="row">Background Position:</th>
-    <td>Horizontal Position: <input class="er-textfield-small" name="wp_erident_login_bg_xpos" type="text" id="wp_erident_login_bg_xpos"
+    <th scope="row"><?php _e( 'Background Position:', 'erident-custom-login-and-dashboard' ); ?></th>
+    <td><?php _e( 'Horizontal Position: ', 'erident-custom-login-and-dashboard' ); ?><input class="er-textfield-small" name="wp_erident_login_bg_xpos" type="text" id="wp_erident_login_bg_xpos"
 value="<?php echo get_option('wp_erident_login_bg_xpos'); ?>" />
-	Vertical Position: <input class="er-textfield-small" name="wp_erident_login_bg_ypos" type="text" id="wp_erident_login_bg_ypos"
+	<?php _e( 'Vertical Position: ', 'erident-custom-login-and-dashboard' ); ?><input class="er-textfield-small" name="wp_erident_login_bg_ypos" type="text" id="wp_erident_login_bg_ypos"
 value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
     <br />
-    <span class="description">The background-position property sets the starting position of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. This will not show any changes if you set the Background Repeat option as "Repeat". <a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank">More Info</a></span>
+    <span class="description"><?php _e( 'The background-position property sets the starting position of a background image. If you entering the value in "pixels" or "percentage", add "px" or "%" at the end of value. This will not show any changes if you set the Background Repeat option as "Repeat". <a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank">More Info</a>', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <tr valign="top">
-    <th scope="row">Login Form Label Text Color</th>
+    <th scope="row"><?php _e( 'Login Form Label Text Color', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_text_color" name="wp_erident_dashboard_text_color" value="<?php echo get_option('wp_erident_dashboard_text_color'); ?>" />
     <div id="ilctabscolorpicker3"></div>
     <br />
-    <span class="description">Click the box to select a color. This will change the color of label Username/Password</span>
+    <span class="description"><?php _e( 'Click the box to select a color. This will change the color of label Username/Password', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Label Text Size:</th>
+    <th scope="row"><?php _e( 'Login Form Label Text Size:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield-small" name="wp_erident_dashboard_label_text_size" type="text" id="wp_erident_dashboard_label_text_size" value="<?php echo get_option('wp_erident_dashboard_label_text_size'); ?>" />px
     <br />
-    <span class="description">Font Size of Label Username /Password(Enter value in pixels)</span>
+    <span class="description"><?php _e( 'Font Size of Label Username/Password(Enter value in pixels)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Input Text Color</th>
+    <th scope="row"><?php _e( 'Login Form Input Text Color', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_input_text_color" name="wp_erident_dashboard_input_text_color" value="<?php echo get_option('wp_erident_dashboard_input_text_color'); ?>" />
     <div id="ilctabscolorpicker8"></div>
     <br />
-    <span class="description">Click the box to select a color. This will change the color of text inside text box.</span>
+    <span class="description"><?php _e( 'Click the box to select a color. This will change the color of text inside text box.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Input Text Size:</th>
+    <th scope="row"><?php _e( 'Login Form Input Text Size:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield-small" name="wp_erident_dashboard_input_text_size" type="text" id="wp_erident_dashboard_input_text_size" value="<?php echo get_option('wp_erident_dashboard_input_text_size'); ?>" />px
     <br />
-    <span class="description">Font Size of text inside text box(Enter value in pixels)</span>
+    <span class="description"><?php _e( 'Font Size of text inside text box(Enter value in pixels)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">
-    <th scope="row">Login Form Link Color</th>
+    <th scope="row"><?php _e( 'Login Form Link Color', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_link_color" name="wp_erident_dashboard_link_color" value="<?php echo get_option('wp_erident_dashboard_link_color'); ?>" />
     <div id="ilctabscolorpicker5"></div>
     <br />
-    <span class="description">Click the box to select a color.</span>
+    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <tr valign="top">
-    <th scope="row">Enable link shadow?</th>
+    <th scope="row"><?php _e( 'Enable link shadow?', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <?php 
 	$check_sh = get_option('wp_erident_dashboard_check_shadow');
@@ -665,28 +699,28 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
       <label>
         <input type="radio" name="wp_erident_dashboard_check_shadow" value="Yes" id="wp_erident_dashboard_check_shadow_0" <?php echo $sx; ?>  onclick="$('#hide-this').show('normal')" />
-        Yes</label>
+        <?php _e( 'Yes', 'erident-custom-login-and-dashboard' ); ?></label>
 
       <label>
         <input type="radio" name="wp_erident_dashboard_check_shadow" value="No" id="wp_erident_dashboard_check_shadow_1" <?php echo $sy; ?> onclick="$('#hide-this').hide('normal')" />
-        No</label>
+        <?php _e( 'No', 'erident-custom-login-and-dashboard' ); ?></label>
     <br />
-    <span class="description">(Check an option)</span>
+    <span class="description"><?php _e( '(Check an option)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top" id="hide-this">
-    <th scope="row">Login Form Link Shadow Color</th>
+    <th scope="row"><?php _e( 'Login Form Link Shadow Color', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_link_shadow" name="wp_erident_dashboard_link_shadow" value="<?php echo get_option('wp_erident_dashboard_link_shadow'); ?>" />
     <div id="ilctabscolorpicker6"></div>
     <br />
-    <span class="description">Click the box to select a color.</span>
+    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   
   <!-- Form Shadow -->
   <tr valign="top">
-    <th scope="row">Enable form shadow?</th>
+    <th scope="row"><?php _e( 'Enable form shadow?', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <?php 
 	$check_fsh = get_option('wp_erident_dashboard_check_form_shadow');
@@ -694,25 +728,36 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
       <label>
         <input type="radio" name="wp_erident_dashboard_check_form_shadow" value="Yes" id="wp_erident_dashboard_check_form_shadow_0" <?php echo $fsx; ?>  onclick="$('#hide-this2').show('normal')" />
-        Yes</label>
+        <?php _e( 'Yes', 'erident-custom-login-and-dashboard' ); ?></label>
 
       <label>
         <input type="radio" name="wp_erident_dashboard_check_form_shadow" value="No" id="wp_erident_dashboard_check_form_shadow_1" <?php echo $fsy; ?> onclick="$('#hide-this2').hide('normal')" />
-        No</label>
+        <?php _e( 'No', 'erident-custom-login-and-dashboard' ); ?></label>
     <br />
-    <span class="description">(Check an option)</span>
+    <span class="description"><?php _e( '(Check an option)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top" id="hide-this2">
-    <th scope="row">Login Form Shadow Color</th>
+    <th scope="row"><?php _e( 'Login Form Shadow Color', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_form_shadow" name="wp_erident_dashboard_form_shadow" value="<?php echo get_option('wp_erident_dashboard_form_shadow'); ?>" />
     <div id="ilctabscolorpicker7"></div>
     <br />
-    <span class="description">Click the box to select a color.</span>
+    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <!-- end Form shadow -->
+  
+  <!-- Login Button Color -->
+  <tr valign="top">
+    <th scope="row"><?php _e( 'Login Button Color', 'erident-custom-login-and-dashboard' ); ?></th>
+    <td>
+    <input class="er-textfield-small" type="text" id="wp_erident_dashboard_button_color" name="wp_erident_dashboard_button_color" value="<?php echo get_option('wp_erident_dashboard_button_color'); ?>" />
+    <div id="ilctabscolorpicker9"></div>
+    <br />
+    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
+    </td>
+  </tr>
   
 </table>
 </div><!-- end inside -->
@@ -721,12 +766,12 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 <div class="postbox">
 <div class="handlediv" title="Click to toggle"><br></div>
-<h3 class="hndle" title="Click to toggle"><span>Plugin Un-install Settings</span>
+<h3 class="hndle" title="Click to toggle"><span><?php _e( 'Plugin Un-install Settings', 'erident-custom-login-and-dashboard' ); ?></span>
 </h3>
 <div class="inside">
 <table border="0">
   <tr valign="top">
-    <th scope="row">Delete custom settings upon plugin deactivation?</th>
+    <th scope="row"><?php _e( 'Delete custom settings upon plugin deactivation?', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <?php 
 	$check = get_option('wp_erident_dashboard_delete_db');
@@ -734,13 +779,13 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
       <label>
         <input type="radio" name="wp_erident_dashboard_delete_db" value="Yes" id="wp_erident_dashboard_delete_db_0" <?php echo $x; ?> />
-        Yes</label>
+        <?php _e( 'Yes', 'erident-custom-login-and-dashboard' ); ?></label>
 
       <label>
         <input type="radio" name="wp_erident_dashboard_delete_db" value="No" id="wp_erident_dashboard_delete_db_1" <?php echo $y; ?> />
-        No</label>
+        <?php _e( 'No', 'erident-custom-login-and-dashboard' ); ?></label>
     <br />
-    <span class="description">(If you set "Yes" all custom settings will be deleted from database upon plugin deactivation)</span>
+    <span class="description"><?php _e( '(If you set "Yes" all custom settings will be deleted from database upon plugin deactivation)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
 </table>
@@ -749,7 +794,7 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 
 <input type="hidden" name="action" value="update" />
-<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_image_logo_width,wp_erident_dashboard_image_logo_height,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_ypos,wp_erident_dashboard_input_text_color,wp_erident_dashboard_label_text_size,wp_erident_dashboard_input_text_size,wp_erident_top_bg_size" />
+<input type="hidden" name="page_options" value="wp_erident_dashboard_data_left,wp_erident_dashboard_data_right,wp_erident_dashboard_image_logo,wp_erident_dashboard_image_logo_width,wp_erident_dashboard_image_logo_height,wp_erident_dashboard_power_text,wp_erident_dashboard_login_width,wp_erident_dashboard_login_radius,wp_erident_dashboard_login_border,wp_erident_dashboard_border_thick,wp_erident_dashboard_border_color,wp_erident_dashboard_login_bg,wp_erident_dashboard_text_color,wp_erident_dashboard_delete_db,wp_erident_top_bg_color,wp_erident_top_bg_image,wp_erident_top_bg_repeat,wp_erident_login_bg_image,wp_erident_login_bg_repeat,wp_erident_dashboard_link_color,wp_erident_dashboard_link_shadow,wp_erident_dashboard_check_shadow,wp_erident_dashboard_form_shadow,wp_erident_dashboard_check_form_shadow,wp_erident_top_bg_xpos,wp_erident_top_bg_ypos,wp_erident_login_bg_xpos,wp_erident_login_bg_ypos,wp_erident_dashboard_input_text_color,wp_erident_dashboard_label_text_size,wp_erident_dashboard_input_text_size,wp_erident_top_bg_size,wp_erident_dashboard_button_color" />
 
 <p>
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -760,16 +805,16 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 <div class="er_notice2">
 <h3>Quick Links</h3>
 <ul>
-    <li class="login-page"><a href="<?php bloginfo( 'wpurl' ); ?>/wp-login.php" target="_blank">Open Your WP Login Page in a New Tab</a></li>
-    <li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank">Plugin Documentation</a></li>
-    <li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank">Plugin Support Page</a></li>
-    <li><a href="http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1" target="_blank">Feature Request/Suggestions?</a></li>
-	<li class="green"><a href="http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard" target="_blank">Got some Love? Give us a 5 star rating!</a></li>
+    <li class="login-page"><a href="<?php bloginfo( 'wpurl' ); ?>/wp-login.php" target="_blank"><?php _e( 'Open Your WP Login Page in a New Tab', 'erident-custom-login-and-dashboard' ); ?></a></li>
+    <li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank"><?php _e( 'Plugin Documentation', 'erident-custom-login-and-dashboard' ); ?></a></li>
+    <li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Plugin Support Page', 'erident-custom-login-and-dashboard' ); ?></a></li>
+    <li><a href="http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1" target="_blank"><?php _e( 'Feature Request/Suggestions?', 'erident-custom-login-and-dashboard' ); ?></a></li>
+	<li class="green"><a href="http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Got some Love? Give us a 5 star rating!', 'erident-custom-login-and-dashboard' ); ?></a></li>
 </ul>
 </div><!-- end .er_notice2 -->
 	<div class="er_notice">
-		<h3>Hire Me</h3>
-		<p>Hey, I'm Libin, a professional Front End Engineer/WordPress Developer. You can hire me for freelancing projects.<br/><br/>Email me: <a href="mailto:libin@libin.in">libin@libin.in</a> <br/>Online Portfolio: <a href="http://www.libin.in" target="_blank">www.libin.in</a></p>
+		<h3><?php _e( 'Hire Me', 'erident-custom-login-and-dashboard' ); ?></h3>
+		<p><?php _e( 'Hey, I\'m Libin, a professional Front End Engineer/WordPress Developer. You can hire me for freelancing projects.<br/><br/>Email me: <a href="mailto:libin@libin.in">libin@libin.in</a> <br/>Online Portfolio: <a href="http://www.libin.in" target="_blank">www.libin.in</a>', 'erident-custom-login-and-dashboard' ); ?></p>
 	</div><!-- end .er_notice -->
     
 </div>
@@ -815,6 +860,11 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 	jQuery('#ilctabscolorpicker8').farbtastic("#wp_erident_dashboard_input_text_color");
     jQuery("#wp_erident_dashboard_input_text_color").click(function(){jQuery('#ilctabscolorpicker8').slideDown()});
 	jQuery("#wp_erident_dashboard_input_text_color").blur(function(){jQuery('#ilctabscolorpicker8').slideUp()});
+	
+	jQuery('#ilctabscolorpicker9').hide();
+	jQuery('#ilctabscolorpicker9').farbtastic("#wp_erident_dashboard_button_color");
+    jQuery("#wp_erident_dashboard_button_color").click(function(){jQuery('#ilctabscolorpicker9').slideDown()});
+	jQuery("#wp_erident_dashboard_button_color").blur(function(){jQuery('#ilctabscolorpicker9').slideUp()});
 	
 	jQuery( ".postbox .hndle" ).on( "mouseover", function() {
 		jQuery( this ).css( "cursor", "pointer" );

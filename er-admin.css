@@ -22,7 +22,7 @@
 .wp-erident-dashboard table {
 
 }
-#ilctabscolorpicker, #ilctabscolorpicker2, #ilctabscolorpicker3, #ilctabscolorpicker4, #ilctabscolorpicker5, #ilctabscolorpicker6, #ilctabscolorpicker7, #ilctabscolorpicker8 {
+#ilctabscolorpicker, #ilctabscolorpicker2, #ilctabscolorpicker3, #ilctabscolorpicker4, #ilctabscolorpicker5, #ilctabscolorpicker6, #ilctabscolorpicker7, #ilctabscolorpicker8, #ilctabscolorpicker9 {
 	margin-left:210px;
 	position:absolute;
 }
@@ -49,6 +49,9 @@
 }
 #ilctabscolorpicker8 {
 	margin-top:-55px;
+}
+#ilctabscolorpicker9 {
+	margin-top:-170px;
 }
 .er_notice {
 	padding: 10px 20px;

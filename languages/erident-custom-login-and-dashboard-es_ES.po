@@ -1,0 +1,414 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Erident\n"
+"POT-Creation-Date: 2014-04-23 15:32+0530\n"
+"PO-Revision-Date: 2014-04-23 15:50+0530\n"
+"Last-Translator: Libin <libin@libin.in>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: er-custom-login.php:44
+msgid "Settings"
+msgstr "Configuración"
+
+#: er-custom-login.php:298
+msgid "Custom Login and Dashboard"
+msgstr "Custom Login y Dashboard"
+
+#: er-custom-login.php:319
+msgid "Erident Custom Login and Dashboard Settings"
+msgstr "Erident Custom Login y Configuración del panel"
+
+#: er-custom-login.php:320
+msgid ""
+"Plugin Loads default values for all below entries. Please change the values "
+"to yours."
+msgstr ""
+"Valores predeterminados Cargas Programas para todas las entradas de abajo. "
+"Por favor cambia los valores a la suya."
+
+#: er-custom-login.php:320
+msgid "Click on the header of each block to open it."
+msgstr "Haga clic en el encabezado de cada bloque para abrirlo."
+
+#: er-custom-login.php:326
+msgid "Dashboard Settings"
+msgstr "Configuración del panel"
+
+#: er-custom-login.php:327
+msgid ""
+"(These settings will be reflected when a user/admin logins to the WordPress "
+"Dashboard)"
+msgstr ""
+"(Estos ajustes se reflejarán cuando un usuario / administrador inicios de "
+"sesión en el panel de WordPress)"
+
+#: er-custom-login.php:332
+msgid "Enter the text for dashboard left side footer:"
+msgstr "Introduzca el texto para el salpicadero izquierda pie lado:"
+
+#: er-custom-login.php:337
+msgid ""
+"This will replace the default \"Thank you for creating with WordPress\" on "
+"the bottom left side of dashboard"
+msgstr ""
+"Esto reemplazará el valor por defecto \"Gracias por crear con WordPress \" "
+"en la parte inferior izquierda del cuadro de mandos"
+
+#: er-custom-login.php:341
+msgid "Enter the text for dashboard right side footer:"
+msgstr "Introduzca el texto para el salpicadero derecho pie lado:"
+
+#: er-custom-login.php:345
+msgid ""
+"This will replace the default \"WordPress Version\" on the bottom right side "
+"of dashboard"
+msgstr ""
+"Esto reemplazará el valor por defecto \"WordPress Version \" en la parte "
+"inferior derecha del cuadro de mandos"
+
+#: er-custom-login.php:354
+msgid "Login Screen Background"
+msgstr "Antecedentes pantalla de login"
+
+#: er-custom-login.php:355
+msgid "(The following settings will be reflected on the \"wp-login.php\" page)"
+msgstr "(Los siguientes ajustes se reflejarán en la página \"wp-login.php \")"
+
+#: er-custom-login.php:360
+msgid "Login Screen Background Color:"
+msgstr "Login Background Color de la pantalla:"
+
+#: er-custom-login.php:365 er-custom-login.php:577 er-custom-login.php:586
+#: er-custom-login.php:689 er-custom-login.php:717 er-custom-login.php:746
+#: er-custom-login.php:758
+msgid "Click the box to select a color."
+msgstr "Haga clic en el cuadro para seleccionar un color."
+
+#: er-custom-login.php:370
+msgid "Login Screen Background Image:"
+msgstr "Acceda pantalla Imagen de fondo:"
+
+#: er-custom-login.php:374
+msgid ""
+"Add your own pattern/image url for the screen background. Leave blank if you "
+"don't need any images."
+msgstr ""
+"Añade tu url patrón / imagen de fondo de la pantalla. Dejar en blanco si no "
+"necesitas ninguna imagen."
+
+#: er-custom-login.php:378
+msgid "Login Screen Background Repeat"
+msgstr "Pantalla de Ingreso de fondo Repetir"
+
+#: er-custom-login.php:417 er-custom-login.php:636
+msgid "Select an image repeat option from dropdown."
+msgstr "Seleccione una opción de repetición de imagen desplegable."
+
+#: er-custom-login.php:421 er-custom-login.php:641
+msgid "Background Position:"
+msgstr "Antecedentes Posición:"
+
+#: er-custom-login.php:422 er-custom-login.php:642
+msgid "Horizontal Position: "
+msgstr "Posición horizontal:"
+
+#: er-custom-login.php:427 er-custom-login.php:647
+msgid ""
+"The background-position property sets the starting position of a background "
+"image. If you entering the value in \"pixels\" or \"percentage\", add \"px\" "
+"or \"%\" at the end of value. This will not show any changes if you set the "
+"Background Repeat option as \"Repeat\". <a href=\"http://www.w3schools.com/"
+"cssref/pr_background-position.asp\" target=\"_blank\">More Info</a>"
+msgstr ""
+"La propiedad background-position ajusta la posición de partida de una imagen "
+"de fondo. Si usted entra en el valor de \"píxeles \" o \"porcentaje \", "
+"añada \"px \" o \"% \" al final del valor. Esto no mostrará ningún cambio si "
+"se establece la opción de repetición de fondo como \"Repetir \". <a href="
+"\"http://www.w3schools.com/cssref/pr_background-position.asp\" target="
+"\"_blank\"> Más información </ a>"
+
+#: er-custom-login.php:432
+msgid "Background Size:"
+msgstr "Tamaño del fondo:"
+
+#: er-custom-login.php:436
+msgid ""
+"The background-size property specifies the size of a background image. If "
+"you entering the value in \"pixels\" or \"percentage\", add \"px\" or \"%\" "
+"at the end of value. Possible values: auto, length, percentage, cover, "
+"contain. <a href=\"http://www.w3schools.com/cssref/css3_pr_background-size."
+"asp\" target=\"_blank\">More Info</a>"
+msgstr ""
+"La propiedad background-size especifica el tamaño de una imagen de fondo. Si "
+"usted entra en el valor de \"píxeles \" o \"porcentaje \", añada \"px \" o "
+"\"% \" al final del valor. Valores posibles: auto,, porcentaje de cobertura, "
+"contienen. <a href=\"http://www.w3schools.com/cssref/css3_pr_background-size."
+"asp\" target=\"_blank\"> Más información </ a>"
+
+#: er-custom-login.php:447
+msgid "Login Screen Logo"
+msgstr "Pantalla de Login Logo"
+
+#: er-custom-login.php:448
+msgid "(Change the default WordPress logo and powered by text)"
+msgstr "(Cambiar el logo de WordPress por defecto y funciona con el texto)"
+
+#: er-custom-login.php:453
+msgid "Logo Url:"
+msgstr "Logo Url:"
+
+#: er-custom-login.php:455
+msgid "Default Logo Size 274px × 63px"
+msgstr "Logo por Defecto Tamaño 274px x 63px"
+
+#: er-custom-login.php:457
+msgid ""
+"(URL path to image to replace default WordPress Logo. (You can upload your "
+"image with the WordPress media uploader)"
+msgstr ""
+"(Ruta URL a la imagen para reemplazar por defecto de WordPress Logo. (Usted "
+"puede subir su imagen con el cargador de medios de WordPress)"
+
+#: er-custom-login.php:462
+msgid "Logo Width:"
+msgstr "Logo Ancho:"
+
+#: er-custom-login.php:466
+msgid "Your Logo width(Enter in pixels). Default: 274px"
+msgstr "Su anchura Logo (Introduzca en píxeles). Por defecto: 274px"
+
+#: er-custom-login.php:470
+msgid "Logo Height:"
+msgstr "Logo Altura:"
+
+#: er-custom-login.php:474
+msgid "Your Logo Height(Enter in pixels). Default: 63px"
+msgstr "Añade su logotipo Altura (Introduzca en píxeles). Por defecto: 63px"
+
+#: er-custom-login.php:479
+msgid "Powered by Text:"
+msgstr "Desarrollado por Texto:"
+
+#: er-custom-login.php:483
+msgid "Show when mouse hover over custom Login logo"
+msgstr "Mostrar al cursor del mouse sobre la costumbre Entrar logo"
+
+#: er-custom-login.php:493
+msgid "Login Form Settings"
+msgstr "Entrar Configuración Form"
+
+#: er-custom-login.php:494
+msgid "(The following settings will change the Login Form style)"
+msgstr "(La siguiente configuración cambiar el estilo de formulario de acceso)"
+
+#: er-custom-login.php:499
+msgid "Login form width:"
+msgstr "Login ancho del formulario:"
+
+#: er-custom-login.php:503
+msgid "Total Form width(Enter in pixels). Default: 350px"
+msgstr "Ancho Forma (En Enter en píxeles). Por defecto: 350px"
+
+#: er-custom-login.php:507
+msgid "Login Form Border Radius:"
+msgstr "Formulario de acceso Border Radio:"
+
+#: er-custom-login.php:511
+msgid ""
+"Border Radius of Login Form. This is the option to make the corners rounded."
+"(Enter in pixels)"
+msgstr ""
+"Border Radio del Formulario de acceso. Esta es la opción de hacer las "
+"esquinas redondeadas. (Introduzca en píxeles)"
+
+#: er-custom-login.php:515
+msgid "Login Border Style"
+msgstr "Acceda Estilo de borde"
+
+#: er-custom-login.php:560
+msgid "Select a Border Style option from dropdown."
+msgstr "Seleccione una opción de Estilo de borde del menú desplegable."
+
+#: er-custom-login.php:564
+msgid "Login Border Thickness:"
+msgstr "Acceda grosor del borde:"
+
+#: er-custom-login.php:568
+msgid "Thickness of Border (Enter value in pixels)"
+msgstr "Espesor de la Frontera (Introduzca el valor en píxeles)"
+
+#: er-custom-login.php:572
+msgid "Login Border Color:"
+msgstr "Acceda Color del borde:"
+
+#: er-custom-login.php:581
+msgid "Login Form Background Color:"
+msgstr "Login Form Color de fondo:"
+
+#: er-custom-login.php:590
+msgid "Login Form Background Image:"
+msgstr "Formulario de acceso Imagen de fondo:"
+
+#: er-custom-login.php:593
+msgid ""
+"Add your own pattern/image url to the form background. Leave blank if you "
+"don't need any images."
+msgstr ""
+"Añade tu url patrón / imagen para el fondo del formulario. Dejar en blanco "
+"si no necesitas ninguna imagen."
+
+#: er-custom-login.php:597
+msgid "Login Form Background Repeat"
+msgstr "Login Formulario de fondo Repetir"
+
+#: er-custom-login.php:644
+msgid "Vertical Position: "
+msgstr "Posición Vertical:"
+
+#: er-custom-login.php:652
+msgid "Login Form Label Text Color"
+msgstr "Login Form Label Color del texto"
+
+#: er-custom-login.php:657
+msgid ""
+"Click the box to select a color. This will change the color of label "
+"Username/Password"
+msgstr ""
+"Haga clic en el cuadro para seleccionar un color. Esto va a cambiar el color "
+"de la etiqueta de nombre de usuario / contraseña"
+
+#: er-custom-login.php:661
+msgid "Login Form Label Text Size:"
+msgstr "Login Form Label Tamaño del texto:"
+
+#: er-custom-login.php:664
+msgid "Font Size of Label Username/Password(Enter value in pixels)"
+msgstr ""
+"Tamaño de la Fuente de la Marca de Usuario / Contraseña (Introduzca el valor "
+"en píxeles)"
+
+#: er-custom-login.php:668
+msgid "Login Form Input Text Color"
+msgstr "Formulario de acceso de entrada de texto en color"
+
+#: er-custom-login.php:673
+msgid ""
+"Click the box to select a color. This will change the color of text inside "
+"text box."
+msgstr ""
+"Haga clic en el cuadro para seleccionar un color. Esto va a cambiar el color "
+"del texto dentro de la caja de texto."
+
+#: er-custom-login.php:677
+msgid "Login Form Input Text Size:"
+msgstr "Formulario de acceso de entrada Tamaño del texto:"
+
+#: er-custom-login.php:680
+msgid "Font Size of text inside text box(Enter value in pixels)"
+msgstr ""
+"Tamaño de fuente del texto dentro de la caja de texto (Introducir el valor "
+"en píxeles)"
+
+#: er-custom-login.php:684
+msgid "Login Form Link Color"
+msgstr "Formulario de acceso Enlace color"
+
+#: er-custom-login.php:694
+msgid "Enable link shadow?"
+msgstr "Activar enlace sombra?"
+
+#: er-custom-login.php:702 er-custom-login.php:731 er-custom-login.php:782
+msgid "Yes"
+msgstr "sí"
+
+#: er-custom-login.php:706 er-custom-login.php:735 er-custom-login.php:786
+msgid "No"
+msgstr "no"
+
+#: er-custom-login.php:708 er-custom-login.php:737
+msgid "(Check an option)"
+msgstr "(Marque una opción)"
+
+#: er-custom-login.php:712
+msgid "Login Form Link Shadow Color"
+msgstr "Formulario de acceso Vínculo Color de sombra"
+
+#: er-custom-login.php:723
+msgid "Enable form shadow?"
+msgstr "Activar forma de sombra?"
+
+#: er-custom-login.php:741
+msgid "Login Form Shadow Color"
+msgstr "Login Form Color de sombra"
+
+#: er-custom-login.php:753
+msgid "Login Button Color"
+msgstr "Botón Inicio de sesión en color"
+
+#: er-custom-login.php:769
+msgid "Plugin Un-install Settings"
+msgstr "Programas desinstalar Configuración"
+
+#: er-custom-login.php:774
+msgid "Delete custom settings upon plugin deactivation?"
+msgstr ""
+"Eliminar una configuración personalizada a la desactivación de plugins?"
+
+#: er-custom-login.php:788
+msgid ""
+"(If you set \"Yes\" all custom settings will be deleted from database upon "
+"plugin deactivation)"
+msgstr ""
+"(Si establece \"Sí \" todos los ajustes personalizados se borrarán de la "
+"base de datos tras la desactivación plugin)"
+
+#: er-custom-login.php:800
+msgid "Save Changes"
+msgstr "Guardar cambios"
+
+#: er-custom-login.php:808
+msgid "Open Your WP Login Page in a New Tab"
+msgstr "Abrir una WP Login Página en una nueva pestaña"
+
+#: er-custom-login.php:809
+msgid "Plugin Documentation"
+msgstr "Documentación Plugin"
+
+#: er-custom-login.php:810
+msgid "Plugin Support Page"
+msgstr "Soporte Plugin Página"
+
+#: er-custom-login.php:811
+msgid "Feature Request/Suggestions?"
+msgstr "Pedido de funciones / Sugerencias?"
+
+#: er-custom-login.php:812
+msgid "Got some Love? Give us a 5 star rating!"
+msgstr "¿Tienes algo de amor? Danos un 5 estrellas!"
+
+#: er-custom-login.php:816
+msgid "Hire Me"
+msgstr "alquiler de mí"
+
+#: er-custom-login.php:817
+msgid ""
+"Hey, I'm Libin, a professional Front End Engineer/WordPress Developer. You "
+"can hire me for freelancing projects.<br/><br/>Email me: <a href=\"mailto:"
+"libin@libin.in\">libin@libin.in</a> <br/>Online Portfolio: <a href=\"http://"
+"www.libin.in\" target=\"_blank\">www.libin.in</a>"
+msgstr ""
+"Hey, estoy Libin, un profesional Front End Engineer / WordPress para "
+"desarrolladores. Usted puede contratarme para trabajar independientemente "
+"proyectos <br/> Envíeme un correo electrónico:. <a href=\"mailto:libin@libin."
+"in\"> libin@libin.in </a> <br/> Portfolio Online : <a href=\"http://www."
+"libin.in\" target=\"_blank\"> www.libin.in </a>"

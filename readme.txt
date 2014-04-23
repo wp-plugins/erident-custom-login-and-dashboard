@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 3.9
-Stable tag: 2.2.1
+Stable tag: 2.3.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,7 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 1. Replace the WordPress Logo on the Login Form with your own (Now support your own size logo).
 1. Enable/Disable shadow for the Links on Login Form
 1. Enable/Disable shadow for the Login Form
+1. Change Login button Color
 1. Preserve previous settings upon WordPress/plugins update!
 
 **Erident Custom Login and Dashboard Settings:**
@@ -63,6 +64,7 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 * Login Form Link Shadow Color
 * Enable form Shadow
 * Login Form Shadow Color
+* Change Login button Color
 
 **Plugin Un-install Settings**
 
@@ -105,6 +107,11 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 2.3.0 =
+* New option to customize Login button Color
+* Localized the entire plugin and ready for translation
+* Spanish translation available
 
 = 2.2.1 =
 * Fixed constants Notice.
@@ -155,5 +162,5 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 
 == Upgrade Notice ==
 
-= 2.2.1 =
-Bug Fixes on login page.
+= 2.3.0 =
+New feature and translations available.
