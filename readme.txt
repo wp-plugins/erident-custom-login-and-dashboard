@@ -14,6 +14,8 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 
 TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
 
+New*: Spanish Translation available!
+
 Fastest support for the plugin. If you have any queries, 
 visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
 
