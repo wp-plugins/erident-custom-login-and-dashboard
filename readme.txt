@@ -3,8 +3,8 @@ Contributors: libinvbabu
 Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
-Tested up to: 3.9
-Stable tag: 2.3.0
+Tested up to: 3.9.1
+Stable tag: 2.3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,9 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 
 == Changelog ==
 
+= 2.3.1 =
+* Fixed one function conflict with some themes.
+
 = 2.3.0 =
 * New option to customize Login button Color
 * Localized the entire plugin and ready for translation
@@ -164,5 +167,5 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 
 == Upgrade Notice ==
 
-= 2.3.0 =
-New feature and translations available.
+= 2.3.1 =
+Important function update.

@@ -5,7 +5,7 @@ Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashb
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
 Text Domain: erident-custom-login-and-dashboard
 Domain Path: /languages
-Version: 2.3.0
+Version: 2.3.1
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -107,7 +107,7 @@ function er_login_logo() {
 	$er_login_bg_ypos = get_option('wp_erident_login_bg_ypos');
 	
 	
-	function hex2rgb( $colour ) {
+	function er_hex2rgb( $colour ) {
         if ( $colour[0] == '#' ) {
                 $colour = substr( $colour, 1 );
         }
@@ -123,7 +123,7 @@ function er_login_logo() {
         $b = hexdec( $b );
         return array( 'red' => $r, 'green' => $g, 'blue' => $b );
 	}
-	$btnrgba =  hex2rgb( $er_login_button_color );
+	$btnrgba =  er_hex2rgb( $er_login_button_color );
 	?>
     <style type="text/css">
 		/* Styles loading from Erident Custom Login and Dashboard Plugin*/
@@ -802,21 +802,29 @@ value="<?php echo get_option('wp_erident_login_bg_ypos'); ?>" />
 
 </form>
 
-<div class="er_notice2">
-<h3>Quick Links</h3>
-<ul>
-    <li class="login-page"><a href="<?php bloginfo( 'wpurl' ); ?>/wp-login.php" target="_blank"><?php _e( 'Open Your WP Login Page in a New Tab', 'erident-custom-login-and-dashboard' ); ?></a></li>
-    <li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank"><?php _e( 'Plugin Documentation', 'erident-custom-login-and-dashboard' ); ?></a></li>
-    <li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Plugin Support Page', 'erident-custom-login-and-dashboard' ); ?></a></li>
-    <li><a href="http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1" target="_blank"><?php _e( 'Feature Request/Suggestions?', 'erident-custom-login-and-dashboard' ); ?></a></li>
-	<li class="green"><a href="http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Got some Love? Give us a 5 star rating!', 'erident-custom-login-and-dashboard' ); ?></a></li>
-</ul>
-</div><!-- end .er_notice2 -->
+<div class="bottom-notices">
+	<div class="er_notice2">
+		<h3><?php _e( 'Quick Links', 'erident-custom-login-and-dashboard' ); ?></h3>
+		<ul>
+			<li class="login-page"><a href="<?php bloginfo( 'wpurl' ); ?>/wp-login.php" target="_blank"><?php _e( 'Open Your WP Login Page in a New Tab', 'erident-custom-login-and-dashboard' ); ?></a></li>
+			<li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank"><?php _e( 'Plugin Documentation', 'erident-custom-login-and-dashboard' ); ?></a></li>
+			<li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Plugin Support Page', 'erident-custom-login-and-dashboard' ); ?></a></li>
+			<li><a href="http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1" target="_blank"><?php _e( 'Feature Request/Suggestions?', 'erident-custom-login-and-dashboard' ); ?></a></li>
+			<li class="green"><a href="http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Got some Love? Give us a 5 star rating!', 'erident-custom-login-and-dashboard' ); ?></a></li>
+		</ul>
+	</div><!-- end .er_notice2 -->
 	<div class="er_notice">
 		<h3><?php _e( 'Hire Me', 'erident-custom-login-and-dashboard' ); ?></h3>
 		<p><?php _e( 'Hey, I\'m Libin, a professional Front End Engineer/WordPress Developer. You can hire me for freelancing projects.<br/><br/>Email me: <a href="mailto:libin@libin.in">libin@libin.in</a> <br/>Online Portfolio: <a href="http://www.libin.in" target="_blank">www.libin.in</a>', 'erident-custom-login-and-dashboard' ); ?></p>
+		
+		<h3><?php _e( 'Translation Credits', 'erident-custom-login-and-dashboard'); ?></h3>
+		<ul>
+			<li><?php _e( 'Spanish by <a href="http://www.linkedin.com/in/adrifolio" target="_blank">Adriana De La Cuadra</a>', 'erident-custom-login-and-dashboard'); ?></li>
+		</ul>
+		<p><?php _e( 'Do you wants to translate this plugin to your language? Email me!', 'erident-custom-login-and-dashboard'); ?></p>
 	</div><!-- end .er_notice -->
-    
+</div>
+
 </div>
 <script type="text/javascript">
  
