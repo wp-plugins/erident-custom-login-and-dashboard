@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 3.9.1
-Stable tag: 2.3.1
+Stable tag: 3.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,10 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 
 == Description ==
 
-TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding.
+TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding. Now faster and better db performance!
 
-New*: Spanish Translation available!
+New*: Import/Export Settings feature available!
+New*: French, Spanish Translation available!
 
 Fastest support for the plugin. If you have any queries, 
 visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
@@ -26,11 +27,12 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 1. Add Image/Color Background to Login Form.
 1. Pick color using awesome jQuery color picker
 1. Change Texts/Links Color and size on Login Form
-1. Replace the WordPress Logo on the Login Form with your own (Now support your own size logo).
+1. Replace the WordPress Logo on the Login Form with your own
 1. Enable/Disable shadow for the Links on Login Form
 1. Enable/Disable shadow for the Login Form
 1. Change Login button Color
 1. Preserve previous settings upon WordPress/plugins update!
+1. Import/Export all plugin settings between websites.
 
 **Erident Custom Login and Dashboard Settings:**
 
@@ -72,7 +74,10 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 
 * Delete custom settings upon plugin deactivation or not
 
+**Import/Export all plugin settings between different websites**
+
 Enjoy your completely branded WordPress Version. Don't forget to [rate the plugin](http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard) :)
+
 
 == Installation ==
 
@@ -103,12 +108,21 @@ By default you will not lose any of your previous settings. Check the Plugin Un-
 = I want some custom changes. How can I do that? =
 You can edit the plugin's php file through WordPress plugin editor. But once you made an update the changes you made will disappear. So make sure to backup your changes before updating. Or inform us [Suggestions/requests](http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1) for future version
 
+= Can I export settings? =
+Yeah! With version 3.0 Import/Export plugin settings feature added. Your life made easy.
+
 == Screenshots ==
 
 1. The complete options on the settings page.
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 3.0 =
+* Huge database performance upgrade on backend
+* Added Import/Export settings feature
+* Added French translation
+* Improved UI with latest WordPress 3.9
 
 = 2.3.1 =
 * Fixed one function conflict with some themes.
@@ -167,5 +181,5 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 
 == Upgrade Notice ==
 
-= 2.3.1 =
-Important function update.
+= 3.0 =
+Import/Export feature, new translations and faster performance.
