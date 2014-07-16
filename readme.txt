@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 3.9.1
-Stable tag: 3.0
+Stable tag: 3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,10 @@ Yeah! With version 3.0 Import/Export plugin settings feature added. Your life ma
 
 == Changelog ==
 
+= 3.1 =
+* Major bug fix on backend.
+* Striped slashes from apostrophe texts.
+
 = 3.0 =
 * Huge database performance upgrade on backend
 * Added Import/Export settings feature
@@ -181,5 +185,5 @@ Yeah! With version 3.0 Import/Export plugin settings feature added. Your life ma
 
 == Upgrade Notice ==
 
-= 3.0 =
-Import/Export feature, new translations and faster performance.
+= 3.1 =
+Major bug fix on backend.

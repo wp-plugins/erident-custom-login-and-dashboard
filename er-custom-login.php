@@ -5,7 +5,7 @@ Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashb
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
 Text Domain: erident-custom-login-and-dashboard
 Domain Path: /languages
-Version: 3.0
+Version: 3.1
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -52,14 +52,14 @@ add_filter('admin_footer_text', 'left_admin_footer_text_output'); //left side
 function left_admin_footer_text_output($er_left) {
     /*Get all options from db */
     $er_options = get_option('plugin_erident_settings');
-    return $er_options['dashboard_data_left'];
+    return stripslashes($er_options['dashboard_data_left']);
 }
  
 add_filter('update_footer', 'right_admin_footer_text_output', 11); //right side
 function right_admin_footer_text_output($er_right) {
     /*Get all options from db */
     $er_options = get_option('plugin_erident_settings');
-    return $er_options['dashboard_data_right'];
+    return stripslashes($er_options['dashboard_data_right']);
 }
 
 /* Login Logo */
@@ -162,7 +162,7 @@ add_filter( 'login_headerurl', 'my_login_logo_url' );
 function er_login_logo_url_title() {
     /*Get all options from db */
     $er_options = get_option('plugin_erident_settings');
-    return $er_options['dashboard_power_text'];
+    return stripslashes($er_options['dashboard_power_text']);
 }
 add_filter( 'login_headertitle', 'er_login_logo_url_title' );
 
@@ -278,11 +278,15 @@ function wp_erident_dashboard_install() {
     );
     
     // if old options exist, update to new system
-	foreach( $er_new_options as $key => $value ) {
-        $existing = get_option( 'wp_erident_' . $key );
-        $er_new_options[$key] = $existing;
-        delete_option( 'wp_erident_' . $key );
-	}
+    $check_db_key = get_option( 'wp_erident_dashboard_delete_db');
+    	
+    if(!empty($check_db_key)) {
+        foreach( $er_new_options as $key => $value ) {
+            $existing = get_option( 'wp_erident_' . $key );
+            $er_new_options[$key] = $existing;
+            delete_option( 'wp_erident_' . $key );
+        }
+    }
     
     add_option( 'plugin_erident_settings', $er_new_options );
 }
@@ -354,7 +358,7 @@ $er_options = get_option('plugin_erident_settings');
     <th scope="row"><?php _e( 'Enter the text for dashboard left side footer:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td>
     <input class="er-textfield" name="er_options_up[dashboard_data_left]" type="text" id="wp_erident_dashboard_data_left"
-value="<?php echo esc_html( $er_options['dashboard_data_left'] ); ?>" placeholder="Text for dashboard left side footer" />
+value="<?php echo esc_html( stripslashes($er_options['dashboard_data_left'] )); ?>" placeholder="Text for dashboard left side footer" />
 	<br />
     <span class="description"><?php _e( 'This will replace the default "Thank you for creating with WordPress" on the bottom left side of dashboard', 'erident-custom-login-and-dashboard' ); ?></span>
 	</td>
@@ -362,7 +366,7 @@ value="<?php echo esc_html( $er_options['dashboard_data_left'] ); ?>" placeholde
   <tr valign="top">
     <th scope="row"><?php _e( 'Enter the text for dashboard right side footer:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="er_options_up[dashboard_data_right]" type="text" id="wp_erident_dashboard_data_right"
-value="<?php echo esc_html( $er_options['dashboard_data_right'] ); ?>" placeholder="Text for dashboard left right footer"  />
+value="<?php echo esc_html( stripslashes($er_options['dashboard_data_right'] )); ?>" placeholder="Text for dashboard left right footer"  />
     <br />
     <span class="description"><?php _e( 'This will replace the default "WordPress Version" on the bottom right side of dashboard', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
@@ -499,7 +503,7 @@ value="<?php echo $er_options['dashboard_image_logo_height']; ?>" />px
   <tr valign="top">
     <th scope="row"><?php _e( 'Powered by Text:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="er_options_up[dashboard_power_text]" type="text" id="wp_erident_dashboard_power_text"
-value="<?php echo $er_options['dashboard_power_text']; ?>" />
+value="<?php echo stripslashes($er_options['dashboard_power_text']); ?>" />
     <br />
     <span class="description"><?php _e( 'Show when mouse hover over custom Login logo', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
