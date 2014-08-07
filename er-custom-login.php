@@ -5,7 +5,7 @@ Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashb
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
 Text Domain: erident-custom-login-and-dashboard
 Domain Path: /languages
-Version: 3.1
+Version: 3.2
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -109,7 +109,7 @@ function er_login_logo() {
 			background-size: <?php echo $er_options['top_bg_size'] ?> !important;
 		}
 		body.login div#login h1 a {
-            background-image: url(<?php echo $er_options['dashboard_image_logo'] ?>);
+            background-image: url(<?php echo $er_options['dashboard_image_logo'] ?>) !important;
             padding-bottom: 30px;
 			margin: 0 auto;
 			background-size: <?php echo $er_options['dashboard_image_logo_width'] ?>px <?php echo $er_options['dashboard_image_logo_height'] ?>px;
@@ -873,6 +873,7 @@ value="<?php echo $er_options['login_bg_ypos']; ?>" />
 		<ul>
 			<li><?php _e( 'Spanish by <a href="http://www.linkedin.com/in/adrifolio" target="_blank">Adriana De La Cuadra</a>', 'erident-custom-login-and-dashboard'); ?></li>
 			<li><?php _e( 'French by <a href="https://www.linkedin.com/pub/vaslin-guillaume/38/35a/5aa" target="_blank">Guillaume Vaslin</a>', 'erident-custom-login-and-dashboard'); ?></li>
+			<li><?php _e( 'German by <a href="http://www.starsofvietnam.net/" target="_blank">Peter Kaulfuss</a>', 'erident-custom-login-and-dashboard'); ?></li>
 		</ul>
 		<p><?php _e( 'Do you wants to translate this plugin to your language? Email me!', 'erident-custom-login-and-dashboard'); ?></p>
 	</div><!-- end .er_notice -->

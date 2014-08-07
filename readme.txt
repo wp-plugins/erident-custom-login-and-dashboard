@@ -3,8 +3,8 @@ Contributors: libinvbabu
 Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
-Tested up to: 3.9.1
-Stable tag: 3.1
+Tested up to: 3.9.2
+Stable tag: 3.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,8 +14,8 @@ Customize completely your WordPress Login Screen and Dashboard easily. Add your 
 
 TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding. Now faster and better db performance!
 
+New*: German, French and Spanish Translation available!
 New*: Import/Export Settings feature available!
-New*: French, Spanish Translation available!
 
 Fastest support for the plugin. If you have any queries, 
 visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
@@ -98,9 +98,7 @@ Yes. WordPress gives you the permission to change whole login screen and dashboa
 
 = How can I add my own image to use as Login screen's background? =
 
-Simply upload your image using WordPress uploader and copy the image link from there and paste it in the Custom Login and Dashboard 
-
-Settings page.
+Simply upload your image using WordPress uploader and copy the image link from there and paste it in the Custom Login and Dashboard Settings page.
 
 = On next update will I lose my previous settings? =
 By default you will not lose any of your previous settings. Check the Plugin Un-install Settings.
@@ -117,6 +115,10 @@ Yeah! With version 3.0 Import/Export plugin settings feature added. Your life ma
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 3.2 =
+* Minor fix for Logo size option.
+* Added German translation.
 
 = 3.1 =
 * Major bug fix on backend.
@@ -186,4 +188,4 @@ Yeah! With version 3.0 Import/Export plugin settings feature added. Your life ma
 == Upgrade Notice ==
 
 = 3.1 =
-Major bug fix on backend.
+Bug fix on backend and German translation.
