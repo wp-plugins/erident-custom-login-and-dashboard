@@ -5,7 +5,7 @@ Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashb
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
 Text Domain: erident-custom-login-and-dashboard
 Domain Path: /languages
-Version: 3.2
+Version: 3.3
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -80,7 +80,13 @@ function er_login_logo() {
 		$er_login_form_shadow = "none";
 	}
 	
-	
+    /* Check if opacity field is empty */
+	if($er_options['dashboard_login_bg_opacity'] == "") { 
+		$er_login_default_opacity = "1";
+	}
+    else {
+        $er_login_default_opacity = $er_options['dashboard_login_bg_opacity'];
+    }
 	function er_hex2rgb( $colour ) {
         if ( $colour[0] == '#' ) {
                 $colour = substr( $colour, 1 );
@@ -98,6 +104,8 @@ function er_login_logo() {
         return array( 'red' => $r, 'green' => $g, 'blue' => $b );
 	}
 	$btnrgba =  er_hex2rgb( $er_options['dashboard_button_color'] );
+    $loginbg = er_hex2rgb( $er_options['dashboard_login_bg'] );
+    
 	?>
     <style type="text/css">
 		/* Styles loading from Erident Custom Login and Dashboard Plugin*/
@@ -122,7 +130,7 @@ function er_login_logo() {
 		.login form {
 			border-radius:<?php echo $er_options['dashboard_login_radius'] ?>px;
 			border:<?php echo $er_options['dashboard_border_thick'] ?>px <?php echo $er_options['dashboard_login_border'] ?> <?php echo $er_options['dashboard_border_color'] ?>;
-			background:<?php echo $er_options['dashboard_login_bg'] ?> url(<?php echo $er_options['login_bg_image'] ?>) <?php echo $er_options['login_bg_repeat'] ?> <?php echo $er_options['login_bg_xpos'] ?> <?php echo $er_options['login_bg_ypos'] ?>;
+			background:rgba(<?php echo $loginbg['red'];?>,<?php echo $loginbg['green']?>,<?php echo $loginbg['blue']?>,<?php echo $er_login_default_opacity; ?>) url(<?php echo $er_options['login_bg_image'] ?>) <?php echo $er_options['login_bg_repeat'] ?> <?php echo $er_options['login_bg_xpos'] ?> <?php echo $er_options['login_bg_ypos'] ?>;
 			-moz-box-shadow:    <?php echo $er_login_form_shadow ?>;
 			-webkit-box-shadow: <?php echo $er_login_form_shadow ?>;
 			box-shadow:         <?php echo $er_login_form_shadow ?>;
@@ -131,11 +139,11 @@ function er_login_logo() {
 			color:<?php echo $er_options['dashboard_text_color'] ?>;
 			font-size:<?php echo $er_options['dashboard_label_text_size'] ?>px;
 		}
-		body.login #loginform p.submit .button-primary {
+		body.login #loginform p.submit .button-primary, body.wp-core-ui .button-primary {
 			background: <?php echo $er_options['dashboard_button_color'] ?> !important;
 			border: none !important;
 		}
-		body.login #loginform p.submit .button-primary:hover, body.login #loginform p.submit .button-primary:focus {
+		body.login #loginform p.submit .button-primary:hover, body.login #loginform p.submit .button-primary:focus, body.wp-core-ui .button-primary:hover {
 			background: rgba(<?php echo $btnrgba['red'];?>,<?php echo $btnrgba['green']?>,<?php echo $btnrgba['blue']?>, 0.9) !important;
 		}
 		body.login div#login form .input, .login input[type="text"] {
@@ -254,6 +262,7 @@ function wp_erident_dashboard_install() {
         'dashboard_border_thick' => '4',
         'dashboard_border_color' => '#0069A0',
         'dashboard_login_bg' => '#dbdbdb',
+        'dashboard_login_bg_opacity' => '1',
         'dashboard_text_color' => '#000000',
         'dashboard_input_text_color' => '#555555',
         'dashboard_label_text_size' => '14',
@@ -606,8 +615,9 @@ value="<?php echo $er_options['dashboard_border_thick']; ?>" />px
     <td>
     <input class="er-textfield-small" type="text" id="wp_erident_dashboard_login_bg" name="er_options_up[dashboard_login_bg]" value="<?php echo $er_options['dashboard_login_bg']; ?>" />
     <div id="ilctabscolorpicker2"></div>
+    <?php _e( 'Background Opacity: ', 'erident-custom-login-and-dashboard' ); ?> <input class="er-textfield-small" name="er_options_up[dashboard_login_bg_opacity]" type="number" step="0.1" min="0" max="1"  id="wp_erident_dashboard_login_bg_opacity" value="<?php echo $er_options['dashboard_login_bg_opacity']; ?>" />
     <br />
-    <span class="description"><?php _e( 'Click the box to select a color.', 'erident-custom-login-and-dashboard' ); ?></span>
+    <span class="description"><?php _e( 'Click the box to select a color. Background Opacity will helps you to put transparent color over a background image. Possible values 0 to 1. Example: 0.5 means 50% transparency. Default: 1 <a href="https://wordpress.org/plugins/erident-custom-login-and-dashboard/faq/" target="_blank">More Info</a>', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
   <tr valign="top">

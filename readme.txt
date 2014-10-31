@@ -4,16 +4,17 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 4.0
-Stable tag: 3.2
+Stable tag: 3.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Customize completely your WordPress Login Screen and Dashboard easily. Add your logo, change background image, colors, styles, Dashboard footer etc.
+Customize completely your WordPress Login Screen easily. Add your logo, change background image, colors, styles, Dashboard footer etc.
 
 == Description ==
 
 TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding. Now faster and better db performance!
 
+New*: Now supports opacity on login form background!
 New*: German, French and Spanish Translation available!
 New*: Import/Export Settings feature available!
 
@@ -24,7 +25,7 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 
 1. Change footer texts on Admin Dashboard
 1. Add Image/Color Backgrounds to Login Screen.
-1. Add Image/Color Background to Login Form.
+1. Add Image/Color Background to Login Form with opacity.
 1. Pick color using awesome jQuery color picker
 1. Change Texts/Links Color and size on Login Form
 1. Replace the WordPress Logo on the Login Form with your own
@@ -60,6 +61,7 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 * Login form width
 * Login Form Border Style/Radius/Color/Thickness
 * Login Form Background Color/Image
+* Background Opacity
 * Login Form Background Repeat
 * Login Form Background Position
 * Login Form Label/input Text Color
@@ -109,12 +111,19 @@ You can edit the plugin's php file through WordPress plugin editor. But once you
 = Can I export settings? =
 Yeah! With version 3.0 Import/Export plugin settings feature added. Your life made easy.
 
+= How will I put opacity on Login Form =
+You can achieve it by either using a transparent png/gif image or you can use the "opacity" feature added in ver:3.3 Add a background color for Login form and set an opacity to it. Default will be 1, means the background color will be opaque. changing it to 0.5 will give you 50% transparency. Just play around it. Make sure that there is no image on Login form background.
+
 == Screenshots ==
 
 1. The complete options on the settings page.
 2. This is the default Login Page Demo
 
 == Changelog ==
+
+= 3.3 =
+* Added Background Opacity feature to the Login Form
+* Now Register button will also take same color of Login button
 
 = 3.2 =
 * Minor fix for Logo size option.
@@ -187,5 +196,5 @@ Yeah! With version 3.0 Import/Export plugin settings feature added. Your life ma
 
 == Upgrade Notice ==
 
-= 3.1 =
-Bug fix on backend and German translation.
+= 3.3 =
+New features added.
