@@ -118,6 +118,8 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 1. The complete options on the settings page.
 2. This is the default Login Page Demo
+3. Example of a custom login page using background opacity feature!
+4. Another example of a custom login page. <a href="https://www.flickr.com/groups/erident-login/" rel="nofollow">Check more designs</a>.
 
 == Changelog ==
 
