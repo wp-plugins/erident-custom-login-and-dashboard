@@ -3,8 +3,8 @@ Contributors: libinvbabu
 Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
-Tested up to: 4.0
-Stable tag: 3.3
+Tested up to: 4.0.1
+Stable tag: 3.3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,9 @@ Customize completely your WordPress Login Screen easily. Add your logo, change b
 
 TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding. Now faster and better db performance!
 
-New*: Now supports opacity on login form background!
-New*: German, French and Spanish Translation available!
-New*: Import/Export Settings feature available!
+* New*: Now supports opacity on login form background!
+* New*: German, French and Spanish Translation available!
+* New*: Import/Export Settings feature available!
 
 Fastest support for the plugin. If you have any queries, 
 visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-custom-login-and-dashboard).
@@ -123,6 +123,10 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Changelog ==
 
+= 3.3.1 =
+* Extended link shadow enable/disable option to login button as well
+* Moved screenshots to assets directory
+
 = 3.3 =
 * Added Background Opacity feature to the Login Form
 * Now Register button will also take same color of Login button
@@ -198,5 +202,5 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Upgrade Notice ==
 
-= 3.3 =
-New features added.
+= 3.3.1 =
+New features added/light weight plugin
