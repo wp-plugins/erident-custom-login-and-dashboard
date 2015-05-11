@@ -3,8 +3,8 @@ Contributors: libinvbabu
 Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
-Tested up to: 4.0.1
-Stable tag: 3.3.1
+Tested up to: 4.2.2
+Stable tag: 3.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,8 +14,9 @@ Customize completely your WordPress Login Screen easily. Add your logo, change b
 
 TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding. Now faster and better db performance!
 
+* New*: Upload logo and background images with WordPress media uploader right from the settings page
+* New*: Turkish Translation available along with German, French and Spanish!
 * New*: Now supports opacity on login form background!
-* New*: German, French and Spanish Translation available!
 * New*: Import/Export Settings feature available!
 
 Fastest support for the plugin. If you have any queries, 
@@ -123,6 +124,10 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Changelog ==
 
+= 3.4 =
+* Supports WordPress media uploader inside the settings page
+* Turkish translations added
+
 = 3.3.1 =
 * Extended link shadow enable/disable option to login button as well
 * Moved screenshots to assets directory
@@ -202,5 +207,5 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Upgrade Notice ==
 
-= 3.3.1 =
-New features added/light weight plugin
+= 3.4 =
+Supports media uploader and new translations

@@ -5,13 +5,13 @@ Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashb
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
 Text Domain: erident-custom-login-and-dashboard
 Domain Path: /languages
-Version: 3.3.1
+Version: 3.4
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
 */
 
-/*  Copyright 2014  Libin V Babu  (email : libin@libin.in)
+/*  Copyright 2015  Libin V Babu  (email : libin@libin.in)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -61,6 +61,12 @@ function right_admin_footer_text_output($er_right) {
     $er_options = get_option('plugin_erident_settings');
     return stripslashes($er_options['dashboard_data_right']);
 }
+
+/* Adding media uploader */
+add_action ( 'admin_enqueue_scripts', function () {
+    if (is_admin ())
+        wp_enqueue_media ();
+} );
 
 /* Login Logo */
 function er_login_logo() {
@@ -252,7 +258,7 @@ function wp_erident_dashboard_install() {
     
     $er_new_options = array(
         'dashboard_data_left' => 'Powered by YourWebsiteName',
-		'dashboard_data_right' => '&copy; 2014 All Rights Reserved',
+		'dashboard_data_right' => '&copy; 2015 All Rights Reserved',
         'dashboard_image_logo' => plugins_url('images/default-logo.png', __FILE__),
         'dashboard_image_logo_width' => '274',
         'dashboard_image_logo_height' => '63',
@@ -405,7 +411,7 @@ value="<?php echo esc_html( stripslashes($er_options['dashboard_data_right'] ));
   <tr valign="top">
     <th scope="row"><?php _e( 'Login Screen Background Image:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="er_options_up[top_bg_image]" type="text" id="wp_erident_top_bg_image"
-value="<?php echo $er_options['top_bg_image']; ?>" />
+value="<?php echo $er_options['top_bg_image']; ?>" /><button class="set_custom_images button"><?php _e( 'Add Background Image', 'erident-custom-login-and-dashboard' ); ?></button>
     <br />
     <span class="description"><?php _e( 'Add your own pattern/image url for the screen background. Leave blank if you don\'t need any images.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
@@ -487,7 +493,7 @@ value="<?php echo $er_options['top_bg_size']; ?>" />
   <tr valign="top">
     <th scope="row"><?php _e( 'Logo Url:', 'erident-custom-login-and-dashboard' ); ?></th>
     <td><input class="er-textfield" name="er_options_up[dashboard_image_logo]" type="text" id="wp_erident_dashboard_image_logo"
-value="<?php echo $er_options['dashboard_image_logo']; ?>" /> <span class="description"><?php _e( 'Default Logo Size 274px × 63px', 'erident-custom-login-and-dashboard' ); ?></span>
+value="<?php echo $er_options['dashboard_image_logo']; ?>" class="regular-text process_custom_images" max="" min="1" step="1" /> <button class="set_custom_images button"><?php _e( 'Add Logo', 'erident-custom-login-and-dashboard' ); ?></button>
     <br />
     <span class="description"><?php _e( '(URL path to image to replace default WordPress Logo. (You can upload your image with the WordPress media uploader)', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
@@ -623,7 +629,7 @@ value="<?php echo $er_options['dashboard_border_thick']; ?>" />px
   </tr>
   <tr valign="top">
     <th scope="row"><?php _e( 'Login Form Background Image:', 'erident-custom-login-and-dashboard' ); ?></th>
-    <td><input class="er-textfield" name="er_options_up[login_bg_image]" type="text" id="wp_erident_login_bg_image" value="<?php echo $er_options['login_bg_image']; ?>" />
+    <td><input class="er-textfield" name="er_options_up[login_bg_image]" type="text" id="wp_erident_login_bg_image" value="<?php echo $er_options['login_bg_image']; ?>" /><button class="set_custom_images button"><?php _e( 'Add Background Image', 'erident-custom-login-and-dashboard' ); ?></button>
     <br />
     <span class="description"><?php _e( 'Add your own pattern/image url to the form background. Leave blank if you don\'t need any images.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
@@ -885,6 +891,7 @@ value="<?php echo $er_options['login_bg_ypos']; ?>" />
 			<li><?php _e( 'Spanish by <a href="http://www.linkedin.com/in/adrifolio" target="_blank">Adriana De La Cuadra</a>', 'erident-custom-login-and-dashboard'); ?></li>
 			<li><?php _e( 'French by <a href="https://www.linkedin.com/pub/vaslin-guillaume/38/35a/5aa" target="_blank">Guillaume Vaslin</a>', 'erident-custom-login-and-dashboard'); ?></li>
 			<li><?php _e( 'German by <a href="http://www.starsofvietnam.net/" target="_blank">Peter Kaulfuss</a>', 'erident-custom-login-and-dashboard'); ?></li>
+			<li><?php _e( 'Turkish by <a href="https://www.linkedin.com/profile/view?id=335577895" target="_blank">Muhammet Küçük</a>', 'erident-custom-login-and-dashboard'); ?></li>
 		</ul>
 		<p><?php _e( 'Do you wants to translate this plugin to your language? Email me!', 'erident-custom-login-and-dashboard'); ?></p>
 	</div><!-- end .er_notice -->
@@ -950,6 +957,22 @@ value="<?php echo $er_options['login_bg_ypos']; ?>" />
 	jQuery(".postbox").on('click', '.hndle', function(){
 		jQuery(this).siblings(".inside").slideToggle();
 	});
+      
+  if (jQuery('.set_custom_images').length > 0) {
+    if ( typeof wp !== 'undefined' && wp.media && wp.media.editor) {
+        jQuery('.wrap').on('click', '.set_custom_images', function(e) {
+            e.preventDefault();
+            var button = jQuery(this);
+            var id = button.prev();
+            wp.media.editor.send.attachment = function(props, attachment) {
+                id.val(attachment.url);
+            };
+            wp.media.editor.open(button);
+            return false;
+        });
+    }
+    };
+      
   });
  
 </script>
