@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 4.2.2
-Stable tag: 3.4
+Stable tag: 3.4.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,9 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Changelog ==
 
+= 3.4.1 =
+* Fixed function for php older version
+
 = 3.4 =
 * Supports WordPress media uploader inside the settings page
 * Turkish translations added
@@ -207,5 +210,5 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Upgrade Notice ==
 
-= 3.4 =
-Supports media uploader and new translations
+= 3.4.1 =
+Fixed function for php older version
