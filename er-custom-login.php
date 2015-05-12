@@ -5,7 +5,7 @@ Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashb
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
 Text Domain: erident-custom-login-and-dashboard
 Domain Path: /languages
-Version: 3.4
+Version: 3.4.1
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -63,10 +63,11 @@ function right_admin_footer_text_output($er_right) {
 }
 
 /* Adding media uploader */
-add_action ( 'admin_enqueue_scripts', function () {
-    if (is_admin ())
+function er_admin_enqueue_script(){
+if (is_admin ())
         wp_enqueue_media ();
-} );
+}
+add_action('admin_enqueue_scripts', 'er_admin_enqueue_script');
 
 /* Login Logo */
 function er_login_logo() {
