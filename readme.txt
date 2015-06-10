@@ -4,7 +4,7 @@ Donate link: http://www.libin.in
 Tags: login, customisation, admin, dashboard, customise, erident, custom, form, logo, customize, branding
 Requires at least: 3.0.0
 Tested up to: 4.2.2
-Stable tag: 3.4
+Stable tag: 3.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Customize completely your WordPress Login Screen easily. Add your logo, change b
 TOP RATED PLUGIN for Login Page Customization!!! Customize completely your WordPress Login Screen and Dashboard easily. Add your company logo to login screen, change background images, colors, styles etc. Customize your Dashboard footer text also for complete branding. Now faster and better db performance!
 
 * New*: Upload logo and background images with WordPress media uploader right from the settings page
-* New*: Turkish Translation available along with German, French and Spanish!
+* New*: Persian, Portuguese-Brazil & Turkish Translations available along with German, French and Spanish!
 * New*: Now supports opacity on login form background!
 * New*: Import/Export Settings feature available!
 
@@ -24,7 +24,7 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 
 **Features:**
 
-1. Change footer texts on Admin Dashboard
+1. Change footer texts on Admin Dashboard or keep it as default
 1. Add Image/Color Backgrounds to Login Screen.
 1. Add Image/Color Background to Login Form with opacity.
 1. Pick color using awesome jQuery color picker
@@ -44,8 +44,8 @@ visit the WordPress [support forum](http://wordpress.org/support/plugin/erident-
 
 (These settings will be reflected when a user/admin logins to the WordPress Dashboard.)
 
-* Change text for dashboard left side footer:
-* Chenge text for dashboard right side footer:
+* Change text for dashboard left side footer.
+* Change text for dashboard right side footer (Keep the field empty for default WordPress version).
 
 **Login Screen Settings**
 
@@ -124,9 +124,17 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Changelog ==
 
+= 3.5 =
+* Option to keep default WordPress version on dashboard footer
+* Persian translation added
+* Security fix for CSRF
+
+= 3.4.1 =
+* Fixed function for php older version
+
 = 3.4 =
 * Supports WordPress media uploader inside the settings page
-* Turkish translations added
+* Turkish translation added
 
 = 3.3.1 =
 * Extended link shadow enable/disable option to login button as well
@@ -207,5 +215,5 @@ You can achieve it by either using a transparent png/gif image or you can use th
 
 == Upgrade Notice ==
 
-= 3.4 =
-Supports media uploader and new translations
+= 3.5 =
+New feature, translations and security fix.

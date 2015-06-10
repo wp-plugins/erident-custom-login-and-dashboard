@@ -5,7 +5,7 @@ Plugin URI: http://www.eridenttech.com/wp-plugins/erident-custom-login-and-dashb
 Description: Customize completely your WordPress Login Screen and Dashboard. Add your company logo to login screen, change background colors, styles, button color etc. Customize your Dashboard footer text also for complete branding.
 Text Domain: erident-custom-login-and-dashboard
 Domain Path: /languages
-Version: 3.4
+Version: 3.5
 Author: Libin V Babu
 Author URI: http://www.libin.in/
 License: GPL
@@ -54,8 +54,12 @@ function left_admin_footer_text_output($er_left) {
     $er_options = get_option('plugin_erident_settings');
     return stripslashes($er_options['dashboard_data_left']);
 }
- 
-add_filter('update_footer', 'right_admin_footer_text_output', 11); //right side
+
+/* Dashboard Footer customisazion. Empty field means it will show default value */
+$opt = right_admin_footer_text_output($er_right);
+if ( !empty($opt)) {
+	add_filter('update_footer', 'right_admin_footer_text_output', 11); //right side
+}
 function right_admin_footer_text_output($er_right) {
     /*Get all options from db */
     $er_options = get_option('plugin_erident_settings');
@@ -63,10 +67,11 @@ function right_admin_footer_text_output($er_right) {
 }
 
 /* Adding media uploader */
-add_action ( 'admin_enqueue_scripts', function () {
-    if (is_admin ())
+function er_admin_enqueue_script(){
+if (is_admin ())
         wp_enqueue_media ();
-} );
+}
+add_action('admin_enqueue_scripts', 'er_admin_enqueue_script');
 
 /* Login Logo */
 function er_login_logo() {
@@ -356,9 +361,11 @@ function wp_erident_dashboard_html_page() {
 
 <?php 
 if( isset($_POST['er_update_settings']) ) {
-	$er_new_options = $_POST['er_options_up'];
-	update_option( 'plugin_erident_settings', $er_new_options);
-	echo '<div id="message" class="updated fade"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+    if ( ! empty( $_POST ) && check_admin_referer( 'er_nonce_form', 'er_total_nonce' ) ) {
+        $er_new_options = $_POST['er_options_up'];
+        update_option( 'plugin_erident_settings', $er_new_options);
+        echo '<div id="message" class="updated fade"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+    }
 } ?>
 <?php /*Get all options from db */
 $er_options = get_option('plugin_erident_settings');
@@ -384,7 +391,7 @@ value="<?php echo esc_html( stripslashes($er_options['dashboard_data_left'] )); 
     <td><input class="er-textfield" name="er_options_up[dashboard_data_right]" type="text" id="wp_erident_dashboard_data_right"
 value="<?php echo esc_html( stripslashes($er_options['dashboard_data_right'] )); ?>" placeholder="Text for dashboard left right footer"  />
     <br />
-    <span class="description"><?php _e( 'This will replace the default "WordPress Version" on the bottom right side of dashboard', 'erident-custom-login-and-dashboard' ); ?></span>
+    <span class="description"><?php _e( 'This will replace the default "WordPress Version" on the bottom right side of dashboard. Keep it as empty field for disabling this feature. Refresh the page again to see the result after saving.', 'erident-custom-login-and-dashboard' ); ?></span>
     </td>
   </tr>
 </table>
@@ -835,7 +842,7 @@ value="<?php echo $er_options['login_bg_ypos']; ?>" />
 <p>
 <input type="submit" name="er_update_settings" class="button-primary" value="<?php _e('Save Changes') ?>" />
 </p>
-
+<?php wp_nonce_field( 'er_nonce_form', 'er_total_nonce' ); ?>
 </form>
 
 <div class="postbox">
@@ -878,7 +885,7 @@ value="<?php echo $er_options['login_bg_ypos']; ?>" />
 			<li class="login-page"><a href="<?php bloginfo( 'wpurl' ); ?>/wp-login.php" target="_blank"><?php _e( 'Open Your WP Login Page in a New Tab', 'erident-custom-login-and-dashboard' ); ?></a></li>
 			<li><a href="http://wordpress.org/extend/plugins/erident-custom-login-and-dashboard/" target="_blank"><?php _e( 'Plugin Documentation', 'erident-custom-login-and-dashboard' ); ?></a></li>
 			<li><a href="http://wordpress.org/support/plugin/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Plugin Support Page', 'erident-custom-login-and-dashboard' ); ?></a></li>
-			<li><a href="http://wordpress.org/support/topic/suggestionsrequests-for-future-version-update?replies=1" target="_blank"><?php _e( 'Feature Request/Suggestions?', 'erident-custom-login-and-dashboard' ); ?></a></li>
+			<li><a href="https://wordpress.org/support/topic/suggestionsrequests-for-future-versions-2" target="_blank"><?php _e( 'Feature Request/Suggestions?', 'erident-custom-login-and-dashboard' ); ?></a></li>
 			<li class="green"><a href="http://wordpress.org/support/view/plugin-reviews/erident-custom-login-and-dashboard" target="_blank"><?php _e( 'Got some Love? Give us a 5 star rating!', 'erident-custom-login-and-dashboard' ); ?></a></li>
 		</ul>
 	</div><!-- end .er_notice2 -->
@@ -892,6 +899,8 @@ value="<?php echo $er_options['login_bg_ypos']; ?>" />
 			<li><?php _e( 'French by <a href="https://www.linkedin.com/pub/vaslin-guillaume/38/35a/5aa" target="_blank">Guillaume Vaslin</a>', 'erident-custom-login-and-dashboard'); ?></li>
 			<li><?php _e( 'German by <a href="http://www.starsofvietnam.net/" target="_blank">Peter Kaulfuss</a>', 'erident-custom-login-and-dashboard'); ?></li>
 			<li><?php _e( 'Turkish by <a href="https://www.linkedin.com/profile/view?id=335577895" target="_blank">Muhammet Küçük</a>', 'erident-custom-login-and-dashboard'); ?></li>
+			<li><?php _e( 'Persian by <a href="https://about.me/reza.heydari" target="_blank">Reza Heydari</a>', 'erident-custom-login-and-dashboard'); ?></li>
+			<li><?php _e( 'Portuguese-Brazil by <a href="https://www.facebook.com/home.php?m2w&refid=8" target="_blank">Reza Heydari</a>', 'erident-custom-login-and-dashboard'); ?></li>
 		</ul>
 		<p><?php _e( 'Do you wants to translate this plugin to your language? Email me!', 'erident-custom-login-and-dashboard'); ?></p>
 	</div><!-- end .er_notice -->
